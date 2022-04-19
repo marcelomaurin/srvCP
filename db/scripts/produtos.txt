@@ -1,0 +1,7 @@
+CREATE TABLE produtos (
+    idProdutos  INTEGER        PRIMARY KEY AUTOINCREMENT,
+    ProdNome    CHAR (20),
+    ProdBARCODE CHAR (25),
+    PRODPRECO   NUMERIC (6, 3),
+    PROCAtivo   BOOLEAN
+);
