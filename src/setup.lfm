@@ -1,0 +1,72 @@
+object frmSetup: TfrmSetup
+  Left = 563
+  Height = 384
+  Top = 297
+  Width = 596
+  Caption = 'Setup '
+  ClientHeight = 384
+  ClientWidth = 596
+  DesignTimePPI = 120
+  LCLVersion = '2.2.0.4'
+  object cbTipo: TComboBox
+    Left = 16
+    Height = 28
+    Top = 30
+    Width = 186
+    ItemHeight = 20
+    ItemIndex = 0
+    Items.Strings = (
+      'No define'
+      'GERTEC'
+      'Tança'
+    )
+    TabOrder = 0
+    Text = 'No define'
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 20
+    Top = 8
+    Width = 33
+    Caption = 'Tipo:'
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 20
+    Top = 64
+    Width = 55
+    Caption = 'Modelo:'
+  end
+  object cbModelo: TComboBox
+    Left = 16
+    Height = 28
+    Top = 86
+    Width = 186
+    ItemHeight = 20
+    ItemIndex = 0
+    Items.Strings = (
+      'No define'
+      'TANCA VP240W'
+    )
+    TabOrder = 1
+    Text = 'No define'
+  end
+  object btSave: TButton
+    Left = 472
+    Height = 31
+    Top = 328
+    Width = 94
+    Caption = 'Save'
+    OnClick = btSaveClick
+    TabOrder = 2
+  end
+  object btCancel: TButton
+    Left = 352
+    Height = 31
+    Top = 328
+    Width = 94
+    Caption = 'Cancel'
+    OnClick = btCancelClick
+    TabOrder = 3
+  end
+end

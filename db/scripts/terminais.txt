@@ -1,0 +1,5 @@
+CREATE TABLE Terminais (
+    idTerminal INTEGER   PRIMARY KEY,
+    Descricao  CHAR (20),
+    IP         CHAR (20) UNIQUE
+);
