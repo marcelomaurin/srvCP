@@ -5,7 +5,8 @@ unit Setup;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, setmain;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
+  setmain;
 
 type
 
@@ -16,8 +17,10 @@ type
     btCancel: TButton;
     cbTipo: TComboBox;
     cbModelo: TComboBox;
+    edFileVP240W: TFileNameEdit;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     procedure btCancelClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
   private
@@ -44,6 +47,7 @@ procedure TfrmSetup.btSaveClick(Sender: TObject);
 begin
   FSETMAIN.TipoCP:= cbTipo.ItemIndex;
   FSETMAIN.ModeloCP:=cbModelo.ItemIndex;
+  FSETMAIN.PATHVP240W:=edFileVP240W.Text;
   close;
 end;
 

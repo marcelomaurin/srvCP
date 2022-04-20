@@ -13,8 +13,6 @@ type
 
 TYPE
 
-
-
 { TCPGENERICO }
  TCPGENERICO = class(TOBJECT)
   FTypeCP : TTypeCP;
@@ -24,15 +22,14 @@ TYPE
   private
    function getcountEquipamentos: integer;
    procedure CarregaLib();
+   function GetVersao : string;
+   function getlstEquipamento(): TStringlist;
   public
     constructor Create(Tipo : TTypeCP);
     procedure AtualizaEquipamentos();
-
-    property lstEquipamento : TStringList read FlstEquipamento;
+    property lstEquipamento : TStringList read getlstEquipamento;
     property countEquipamentos : integer read getcountEquipamentos;
-
-
-
+    property VERSAO : String read GetVersao;
 end;
 
 implementation
@@ -63,6 +60,35 @@ begin
    FVP240W := TVP240W.Create();
    FVERSAO:= inttostr(FVP240W.VERSAO);
   end;
+end;
+
+function TCPGENERICO.GetVersao: string;
+var info : string;
+begin
+  info := ' not defined';
+  if (FTypeCP = TypeCP_VP240W) then
+  begin
+       info :=
+          copy(IntToHex(FVP240W.VERSAO,8),1,2) + '.' +
+          copy(IntToHex(FVP240W.VERSAO,8),3,2) + '.' +
+          copy(IntToHex(FVP240W.VERSAO,8),5,2) + '.' +
+          copy(IntToHex(FVP240W.VERSAO,8),7,2) ;
+  end;
+  result := info;
+end;
+
+(*Retorna a lista de equipamentos*)
+function TCPGENERICO.getlstEquipamento: TStringlist;
+var
+  auxiliar : TStringlist;
+begin
+  auxiliar := TStringList.create();
+  if (FTypeCP = TypeCP_VP240W) then
+  begin
+       auxiliar.Assign(FVP240W.FlstEquipamentos);
+  end;
+  result := auxiliar;
+
 end;
 
 function TCPGENERICO.getcountEquipamentos: integer;

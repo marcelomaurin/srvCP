@@ -1,0 +1,157 @@
+object frmDatabase: TfrmDatabase
+  Left = -931
+  Height = 472
+  Top = 695
+  Width = 736
+  Caption = 'Database'
+  ClientHeight = 472
+  ClientWidth = 736
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poMainFormCenter
+  LCLVersion = '2.2.0.4'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 472
+    Top = 0
+    Width = 736
+    ActivePage = tbProducts
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object tbProducts: TTabSheet
+      Caption = 'Products'
+      ClientHeight = 439
+      ClientWidth = 728
+      object Panel1: TPanel
+        Left = 0
+        Height = 311
+        Top = 128
+        Width = 728
+        Align = alBottom
+        ClientHeight = 311
+        ClientWidth = 728
+        TabOrder = 0
+        object DBGrid1: TDBGrid
+          Left = 1
+          Height = 309
+          Top = 1
+          Width = 726
+          Align = alClient
+          Color = clWindow
+          Columns = <>
+          DataSource = dsProdutos
+          TabOrder = 0
+        end
+      end
+      object DBNavigator1: TDBNavigator
+        Left = 10
+        Height = 31
+        Top = 85
+        Width = 301
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 31
+        ClientWidth = 301
+        DataSource = dsProdutos
+        Options = []
+        TabOrder = 1
+      end
+    end
+    object tbTerms: TTabSheet
+      Caption = 'Terms'
+      ClientHeight = 439
+      ClientWidth = 728
+      object DBNavigator2: TDBNavigator
+        Left = 10
+        Height = 31
+        Top = 85
+        Width = 301
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 31
+        ClientWidth = 301
+        DataSource = dsTerminais
+        Options = []
+        TabOrder = 0
+      end
+      object Panel2: TPanel
+        Left = 0
+        Height = 319
+        Top = 120
+        Width = 728
+        Align = alBottom
+        ClientHeight = 319
+        ClientWidth = 728
+        TabOrder = 1
+        object DBGrid2: TDBGrid
+          Left = 1
+          Height = 317
+          Top = 1
+          Width = 726
+          Align = alClient
+          Color = clWindow
+          Columns = <>
+          DataSource = dsTerminais
+          TabOrder = 0
+        end
+      end
+    end
+    object tbImport: TTabSheet
+      Caption = 'Import'
+      ClientHeight = 439
+      ClientWidth = 728
+      object btImportar: TButton
+        Left = 296
+        Height = 31
+        Top = 40
+        Width = 94
+        Caption = 'Import'
+        OnClick = btImportarClick
+        TabOrder = 0
+      end
+      object Label1: TLabel
+        Left = 23
+        Height = 20
+        Top = 18
+        Width = 125
+        Caption = 'Import data about:'
+      end
+      object cbImportacao: TComboBox
+        Left = 20
+        Height = 28
+        Top = 42
+        Width = 260
+        ItemHeight = 20
+        ItemIndex = 0
+        Items.Strings = (
+          'Not defined'
+          'TEMSOLUCAO/COMLINK'
+        )
+        TabOrder = 1
+        Text = 'Not defined'
+      end
+    end
+  end
+  object dsProdutos: TDataSource
+    DataSet = dmBase.tbProdutos
+    Left = 672
+    Top = 360
+  end
+  object dsTerminais: TDataSource
+    DataSet = dmBase.tbTerminais
+    Left = 672
+    Top = 408
+  end
+end

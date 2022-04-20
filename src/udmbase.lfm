@@ -1,9 +1,11 @@
 object dmBase: TdmBase
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 350
-  HorizontalOffset = 583
-  VerticalOffset = 246
-  Width = 415
+  Height = 438
+  HorizontalOffset = 0
+  VerticalOffset = 592
+  Width = 519
+  PPI = 120
   object zcon: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
@@ -15,17 +17,17 @@ object dmBase: TdmBase
       'codepage=UTF-8'
     )
     Port = 0
-    Database = '.\..\db\srvCP.db'
+    Database = 'C:\Users\marcelo.maurin\projetos\srvCP\db\srvCP.db'
     Protocol = 'sqlite'
-    LibraryLocation = '.\..\sqlite\sqlite3.dll'
-    Left = 48
-    Top = 40
+    LibraryLocation = 'C:\Users\marcelo.maurin\projetos\srvCP\sqlite32\sqlite3.dll'
+    Left = 64
+    Top = 50
   end
   object tbProdutos: TZTable
     Connection = zcon
     TableName = 'produtos'
-    Left = 48
-    Top = 136
+    Left = 60
+    Top = 170
     object tbProdutosidProdutos: TLargeintField
       FieldKind = fkData
       FieldName = 'idProdutos'
@@ -74,5 +76,44 @@ object dmBase: TdmBase
       Required = False
       DisplayValues = 'True;False'
     end
+  end
+  object tbTerminais: TZTable
+    Connection = zcon
+    TableName = 'Terminais'
+    Left = 144
+    Top = 170
+    object tbTerminaisidTerminal: TLargeintField
+      FieldKind = fkData
+      FieldName = 'idTerminal'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object tbTerminaisDescricao: TStringField
+      FieldKind = fkData
+      FieldName = 'Descricao'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object tbTerminaisIP: TStringField
+      FieldKind = fkData
+      FieldName = 'IP'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qryAux: TZQuery
+    Connection = zcon
+    Params = <>
+    Left = 448
+    Top = 344
   end
 end

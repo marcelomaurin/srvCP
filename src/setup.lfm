@@ -1,12 +1,13 @@
 object frmSetup: TfrmSetup
-  Left = 563
+  Left = -934
   Height = 384
-  Top = 297
+  Top = 1488
   Width = 596
   Caption = 'Setup '
   ClientHeight = 384
   ClientWidth = 596
   DesignTimePPI = 120
+  Position = poMainFormCenter
   LCLVersion = '2.2.0.4'
   object cbTipo: TComboBox
     Left = 16
@@ -27,15 +28,15 @@ object frmSetup: TfrmSetup
     Left = 16
     Height = 20
     Top = 8
-    Width = 33
-    Caption = 'Tipo:'
+    Width = 34
+    Caption = 'Type:'
   end
   object Label2: TLabel
     Left = 16
     Height = 20
     Top = 64
-    Width = 55
-    Caption = 'Modelo:'
+    Width = 46
+    Caption = 'Model:'
   end
   object cbModelo: TComboBox
     Left = 16
@@ -68,5 +69,26 @@ object frmSetup: TfrmSetup
     Caption = 'Cancel'
     OnClick = btCancelClick
     TabOrder = 3
+  end
+  object edFileVP240W: TFileNameEdit
+    Left = 16
+    Height = 28
+    Top = 145
+    Width = 289
+    DialogTitle = 'Select import file'
+    Filter = 'Library|*.dll;*.so;*.a|All files|*.*'
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 29
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 4
+  end
+  object Label3: TLabel
+    Left = 16
+    Height = 20
+    Top = 120
+    Width = 62
+    Caption = 'File Data:'
   end
 end

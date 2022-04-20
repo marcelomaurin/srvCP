@@ -53,6 +53,7 @@ type
         FTipoCP : integer;
         FModeloCP : integer;
         FDatabase : string;
+        FPATHVP240W : string;
 
         procedure Default();
         procedure SetDatabase(AValue: string);
@@ -78,6 +79,7 @@ type
         procedure SetSplash(value:boolean);
         procedure SetTipoCP(value: integer);
         procedure SetModeloCP(value: integer);
+        procedure SetPATHVP240W(value : string);
 
 
   public
@@ -106,6 +108,7 @@ type
         property TipoCP : integer read FTipoCP write SetTipoCP;
         property ModeloCP : integer read FModeloCP write SetModeloCP;
         property Database : string read FDatabase write SetDatabase;
+        property PATHVP240W : string read FPATHVP240W write SetPATHVP240W;
   end;
 
   var
@@ -224,6 +227,11 @@ begin
   FModeloCP:= value;
 end;
 
+procedure TSetMain.SetPATHVP240W(value: string);
+begin
+  FPATHVP240W := value;
+end;
+
 
 
 
@@ -254,13 +262,17 @@ begin
     FPainel := '192.168.0.108';
     FTipoCP := 0;
     FModeloCP := 0;
+
     {$IFDEF WINDOWS}
     FDatabase := '.\..\db\srvCP.db';
+    FPATHVP240W := '';
     {$ENDIF}
     {$ifdef CPU32}
+    FPATHVP240W := ExtractFilePath(ApplicationName)+'VP.dll';
     {$endif}
 
-    {$ifdef CPU32}
+    {$ifdef CPU64}
+    FPATHVP240W := '';
     {$endif}
     FTipoCP:= integer(CPGERTEC); (* Tipo de equipamento GERTEC *)
     FModeloCP := integer(CVP240W); (* Modelo padrão VP240-W *)
@@ -368,6 +380,11 @@ begin
     begin
       FDATABASE := RetiraInfo(arquivo.Strings[posicao]);
     end;
+    if  BuscaChave(arquivo,'PATHVP240W:',posicao) then
+    begin
+      PATHVP240W := RetiraInfo(arquivo.Strings[posicao]);
+    end;
+
 end;
 
 //Metodo construtor
@@ -429,6 +446,7 @@ begin
   arquivo.Append('TIPOCP:'+ inttostr(FTipoCP));
   arquivo.Append('MODELOCP:'+ inttostr(FModeloCP));
   arquivo.Append('DATABASE:'+ FDATABASE);
+  arquivo.Append('PATHVP240W:'+ FPATHVP240W);
   arquivo.SaveToFile(fpath+filename);
 end;
 

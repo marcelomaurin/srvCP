@@ -60,7 +60,6 @@ begin
     begin
       ShowMessage('Canceled Operation!');
     end;
-
   end;
 end;
 

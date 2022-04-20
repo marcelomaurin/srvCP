@@ -1,0 +1,80 @@
+object dmBase: TdmBase
+  OnDestroy = DataModuleDestroy
+  OldCreateOrder = False
+  Height = 438
+  HorizontalOffset = 729
+  VerticalOffset = 308
+  Width = 519
+  PPI = 120
+  object zcon: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    ClientCodepage = 'UTF-8'
+    Catalog = 'main'
+    Properties.Strings = (
+      'AutoEncodeStrings=True'
+      'controls_cp=CP_UTF8'
+      'codepage=UTF-8'
+    )
+    Port = 0
+    Database = '.\..\db\srvCP.db'
+    Protocol = 'sqlite'
+    LibraryLocation = '.\..\sqlite64\sqlite3.dll'
+    Left = 64
+    Top = 50
+  end
+  object tbProdutos: TZTable
+    Connection = zcon
+    TableName = 'produtos'
+    Left = 60
+    Top = 170
+    object tbProdutosidProdutos: TLargeintField
+      FieldKind = fkData
+      FieldName = 'idProdutos'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object tbProdutosProdNome: TStringField
+      FieldKind = fkData
+      FieldName = 'ProdNome'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object tbProdutosProdBARCODE: TStringField
+      FieldKind = fkData
+      FieldName = 'ProdBARCODE'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 25
+    end
+    object tbProdutosPRODPRECO: TFloatField
+      FieldKind = fkData
+      FieldName = 'PRODPRECO'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 6
+    end
+    object tbProdutosPROCAtivo: TBooleanField
+      FieldKind = fkData
+      FieldName = 'PROCAtivo'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+  end
+end

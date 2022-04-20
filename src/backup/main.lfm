@@ -1,0 +1,84 @@
+object frmmain: Tfrmmain
+  Left = -1136
+  Height = 152
+  Top = 1078
+  Width = 501
+  Caption = 'srvCP'
+  ClientHeight = 152
+  ClientWidth = 501
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poMainFormCenter
+  LCLVersion = '2.2.0.4'
+  object btStart: TButton
+    Left = 229
+    Height = 31
+    Top = 32
+    Width = 125
+    Caption = 'Start'
+    OnClick = btStartClick
+    TabOrder = 0
+  end
+  object btStop: TButton
+    Left = 360
+    Height = 31
+    Top = 32
+    Width = 124
+    Caption = 'Stop'
+    OnClick = btStopClick
+    TabOrder = 1
+  end
+  object btsetup: TButton
+    Left = 230
+    Height = 31
+    Top = 76
+    Width = 124
+    Caption = 'Setup'
+    OnClick = btsetupClick
+    TabOrder = 2
+  end
+  object btDataBase: TButton
+    Left = 360
+    Height = 31
+    Top = 76
+    Width = 124
+    Caption = 'DataBase'
+    OnClick = btDataBaseClick
+    TabOrder = 3
+  end
+  object lbVersao: TLabel
+    Left = 400
+    Height = 20
+    Top = 120
+    Width = 57
+    Caption = 'lbVersao'
+  end
+  object TrayIcon1: TTrayIcon
+    BalloonTitle = 'srvCP'
+    PopUpMenu = pmMenu
+    Left = 122
+    Top = 44
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 3000
+    OnTimer = Timer1Timer
+    Left = 39
+    Top = 35
+  end
+  object pmMenu: TPopupMenu
+    Left = 168
+    Top = 46
+    object MenuItem1: TMenuItem
+      Caption = 'Devices'
+      OnClick = MenuItem1Click
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Close'
+    end
+  end
+end
