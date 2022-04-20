@@ -7,16 +7,16 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, vp240W, CPGENERICO
+  Forms, main, vp240W, CPGENERICO, udmbase, Setup, database, funcoes, setmain,
+  registro, zcomponent, lnetbase, lnetvisual, TEMSOLUCAO, devices
   { you can add units after this };
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tfrmmain, frmmain);
   Application.Run;
 end.
 
