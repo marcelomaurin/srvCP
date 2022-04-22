@@ -3,6 +3,9 @@ Servidor de Consulta de Preço - Compativel com TANCA VP-240W
 
 Projeto Open Source para Gerenciamento de Serviço de Preços em Equipamentos de Consulta de Preço
 
+# Site do Projeto
+http://maurinsoft.com.br/index.php/srvcp-modulo-de-consulta-de-preco/
+
 Equipamento Compatível:
   - Tanca VP-240W
 
