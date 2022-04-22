@@ -1,21 +1,21 @@
 object frmdevices: Tfrmdevices
-  Left = -808
-  Height = 240
-  Top = 1234
-  Width = 320
+  Left = -523
+  Height = 192
+  Top = -114
+  Width = 256
   Caption = 'Devices'
-  ClientHeight = 240
-  ClientWidth = 320
-  DesignTimePPI = 120
+  ClientHeight = 192
+  ClientWidth = 256
   Position = poMainFormCenter
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '2.0.12.0'
   object lbDevices: TListBox
     Left = 0
-    Height = 240
+    Height = 192
     Top = 0
-    Width = 320
+    Width = 256
     Align = alClient
     ItemHeight = 0
+    ParentFont = False
     TabOrder = 0
   end
 end

@@ -60,16 +60,12 @@ begin
     begin
       ShowMessage('Canceled Operation!');
     end;
-
   end;
 end;
 
 procedure TfrmTemsolucao.DeleteAll;
 begin
-
      dmBase.DeleteAllProdutos();
-
-
 end;
 
 procedure TfrmTemsolucao.btCancelClick(Sender: TObject);

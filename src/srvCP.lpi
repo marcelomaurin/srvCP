@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="12"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <General>
-      <Flags>
-        <CompatibilityMode Value="True"/>
-      </Flags>
       <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
       <Title Value="srvCP"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -25,6 +23,7 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
+      <Modes Count="0"/>
     </RunParams>
     <RequiredPackages Count="6">
       <Item1>
@@ -101,7 +100,9 @@
       <Unit9>
         <Filename Value="registro.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmRegistrar"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit9>
       <Unit10>
         <Filename Value="temsolucao.pas"/>
@@ -115,6 +116,7 @@
         <Filename Value="devices.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmdevices"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit11>
     </Units>

@@ -47,6 +47,7 @@ procedure TfrmSetup.btSaveClick(Sender: TObject);
 begin
   FSETMAIN.TipoCP:= cbTipo.ItemIndex;
   FSETMAIN.ModeloCP:=cbModelo.ItemIndex;
+  FSETMAIN.PATHVP240W:=edFileVP240W.Text;
   close;
 end;
 

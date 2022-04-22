@@ -33,7 +33,7 @@ type
     procedure AtivaTabelas();
     procedure DesativaTabelas();
     procedure DeleteAllProdutos();
-    procedure VerificaBaseTerminal(
+    procedure VerificaBaseTerminal(lst :TStrings);
 
 
   end;
@@ -55,7 +55,7 @@ begin
   end;
 end;
 
-procedure TdmBase.Conectar;
+procedure TdmBase.Conectar();
 begin
     {$ifdef CPU32}
     zcon.LibraryLocation:= '.\..\sqlite32\sqlite3.dll';
@@ -77,25 +77,25 @@ begin
     end;
 end;
 
-procedure TdmBase.Desconectar;
+procedure TdmBase.Desconectar();
 begin
   zcon.Disconnect;
 end;
 
-procedure TdmBase.AtivaTabelas;
+procedure TdmBase.AtivaTabelas();
 begin
   tbProdutos.open;
   tbTerminais.open;
 end;
 
-procedure TdmBase.DesativaTabelas;
+procedure TdmBase.DesativaTabelas();
 begin
   tbProdutos.close;
   tbTerminais.close;
 
 end;
 
-procedure TdmBase.DeleteAllProdutos;
+procedure TdmBase.DeleteAllProdutos();
 begin
   DesativaTabelas(); (*Desativa tabelas para evitar lock de registro*)
   qryAux.close;
@@ -103,6 +103,24 @@ begin
   qryAux.Prepare;
   qryAux.ExecSQL;
   AtivaTabelas();
+end;
+
+procedure TdmBase.VerificaBaseTerminal(lst: TStrings);
+var
+  a : integer;
+begin
+  for a := 0 to lst.Count-1 do
+  begin
+      tbTerminais.Locate('descricao',lst[a], [loPartialKey]);
+      if(tbTerminais.RecordCount=0) then
+      begin
+        tbTerminais.Append;
+        tbTerminais.FieldByName('Descricao').asstring := lst[a];
+        tbTerminais.FieldByName('IP').asstring := lst[a];
+        tbTerminais.Post;
+        tbTerminais.Refresh;
+      end;
+  end;
 end;
 
 end.

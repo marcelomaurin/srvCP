@@ -5,7 +5,7 @@ unit vp240W;
 interface
 
 uses
-  Classes, SysUtils, windows;
+  Classes, SysUtils, windows, dialogs, funcoes;
 
 const
   //ALERTAS
@@ -14,6 +14,8 @@ const
   STOP_SRV    = 'Servidor interrompido.';
 
 
+type
+  TResponseFunction = procedure(IP : String; BarCode : String);
 
 
 type TIPV4 = record
@@ -40,18 +42,26 @@ type
 TVP240W = class(TObject)
   FVersion : DWORD;
   FTabTerms: TTABSOCK;
-  FlstEquipamentos : TStringList;
+  FlstEquipamentos : TStrings;
   LibHandle : THandle;
+
+
 private
   TabTerms: TTABSOCK;
-  function getListEquipamentos(): TStringlist;
+  FResponseFunction: TResponseFunction;
+  function getListEquipamentos(): TStrings;
+  procedure setResponseFunction(AValue: TResponseFunction);
 public
   constructor Create();
   destructor destroy();
   procedure LoadLib();
   procedure AtualizaEquipamentos();
+  function getASK(): string;
   PROPERTY VERSAO : DWORD read FVersion;
-  property lstEquipamentos : TStringList read getListEquipamentos;
+  property lstEquipamentos : TStrings read getListEquipamentos;
+  property ResponseFunction : TResponseFunction read FResponseFunction write setResponseFunction;
+
+
 end;
 
 //------------------------------------------------------------------------------
@@ -96,6 +106,7 @@ implementation
 
 constructor TVP240W.Create();
 begin
+  FResponseFunction := nil;
   LoadLib();
   if @vInitialize <> nil then
      vInitialize;
@@ -103,6 +114,12 @@ begin
      FVersion := dll_version();
   FlstEquipamentos := TStringList.create();
   FlstEquipamentos.Clear;
+  if(tc_startserver() = 0) then
+  begin
+    ShowMessage('Erro ao parar');
+  end;
+
+
 
 end;
 
@@ -111,7 +128,7 @@ begin
 
 end;
 
-procedure TVP240W.LoadLib;
+procedure TVP240W.LoadLib();
 begin
 
   // Get the handle of the library to be used
@@ -139,27 +156,59 @@ begin
 
 end;
 
-function TVP240W.getListEquipamentos: TStringlist;
+function TVP240W.getASK(): string;
+var
+ stBarCode: stAddress;
+ BarCode: PChar;
+begin
+  if ( bReceiveBarcode(stBarCode, BarCode) )  then
+  begin
+       if(@FResponseFunction<> nil) then  (*Callback*)
+       begin
+            stBarCode.Socket.ToString;
+            FResponseFunction(stBarCode.ip+':'+inttostr(stBarCode.Socket),String(BarCode));
+       end;
+  end;
+
+end;
+
+
+
+function TVP240W.getListEquipamentos(): TStrings;
 var
   i : integer;
   IdxLista: integer;
-  sIP : string;
+  sIP : PChar;
+  info : string;
 begin
   if (@GetTabConectados <> nil) then
   begin
     TabTerms := GetTabConectados(1); (*Atualiza listagem de equipamentos*)
     FlstEquipamentos.Clear;
+    //showmessage(inttostr(TabTerms.NumSockConec));
 
     for i:= 0 to TabTerms.NumSockConec-1 do
     begin
-      if TabTerms.TabIP[i] <> 0 then
+      if(TabTerms.TabIP[i] <> 0) then
       begin
-        sIP:= Inet_NtoA(TabTerms.TabIP[i]);
-        FlstEquipamentos.AddObject(String(sIP),TObject(TabTerms.TabSock[i]));
+        //sIP:= Inet_NtoA(TabTerms.TabIP[i]);
+        info := CaptINET(TabTerms.TabIP[i]);
+        //showmessage(String(sIP));
+        //FlstEquipamentos.AddObject(String(sIP),TObject(TabTerms.TabSock[i]));
+        FlstEquipamentos.AddObject(info,TObject(TabTerms.TabSock[i]));
       end;
     end;
   end;
   result :=  FlstEquipamentos;
+end;
+
+
+
+
+procedure TVP240W.setResponseFunction(AValue: TResponseFunction);
+begin
+  if FResponseFunction=AValue then Exit;
+     FResponseFunction:=AValue;
 end;
 
 //------------------------------------------------------------------------------

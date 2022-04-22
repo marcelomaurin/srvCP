@@ -5,10 +5,14 @@ unit devices;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
 
 type
-  TForm1 = class(TForm)
+
+  { Tfrmdevices }
+
+  Tfrmdevices = class(TForm)
+    lbDevices: TListBox;
   private
 
   public
@@ -16,7 +20,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmdevices: Tfrmdevices;
 
 implementation
 

@@ -10,6 +10,8 @@ uses
 type
   TTypeCP = (TypeCP_VP240W);
 
+type
+  TGenericResponseFunction = procedure(IP : String; BarCode : String); cdecl;
 
 TYPE
 
@@ -20,16 +22,20 @@ TYPE
   FVERSAO : String;
   FlstEquipamento : TStringlist;
   private
+   FGenericResponseFunction: TResponseFunction;
    function getcountEquipamentos: integer;
    procedure CarregaLib();
    function GetVersao : string;
-   function getlstEquipamento(): TStringlist;
+   function getlstEquipamento(): TStrings;
+   procedure setGenericResponseFunction(AValue: TGenericResponseFunction);
   public
     constructor Create(Tipo : TTypeCP);
+    function getASK(): string;
     procedure AtualizaEquipamentos();
-    property lstEquipamento : TStringList read getlstEquipamento;
+    property lstEquipamento : TStrings read getlstEquipamento;
     property countEquipamentos : integer read getcountEquipamentos;
     property VERSAO : String read GetVersao;
+    property ResponseFunction : TGenericResponseFunction read FGenericResponseFunction write setGenericResponseFunction;
 end;
 
 implementation
@@ -39,9 +45,23 @@ implementation
 constructor TCPGENERICO.Create(Tipo: TTypeCP);
 begin
   FTypeCP := tipo;
+  FGenericResponseFunction := nil;
   FlstEquipamento := TStringList.create();
   FlstEquipamento.Clear;
   CarregaLIB();
+end;
+
+function TCPGENERICO.getASK(): string;
+var
+ stBarCode: stAddress;
+ BarCode: PChar;
+begin
+  if (FTypeCP = TypeCP_VP240W) then
+  begin
+       FVP240W.getASK();
+  end;
+
+
 end;
 
 procedure TCPGENERICO.AtualizaEquipamentos();
@@ -62,6 +82,8 @@ begin
   end;
 end;
 
+
+
 function TCPGENERICO.GetVersao: string;
 var info : string;
 begin
@@ -77,9 +99,30 @@ begin
   result := info;
 end;
 
-function TCPGENERICO.getlstEquipamento: TStringlist;
+(*Retorna a lista de equipamentos*)
+function TCPGENERICO.getlstEquipamento(): TStrings;
+var
+  auxiliar : TStrings;
 begin
+  auxiliar := TStrings.create();
+  if (FTypeCP = TypeCP_VP240W) then
+  begin
+       auxiliar := FVP240W.lstEquipamentos;
+  end;
+  result := auxiliar;
 
+end;
+
+
+procedure TCPGENERICO.setGenericResponseFunction(
+  AValue: TGenericResponseFunction);
+begin
+  if FGenericResponseFunction=AValue then Exit;
+     FGenericResponseFunction:=AValue;
+  if (FTypeCP = TypeCP_VP240W) then
+  begin
+      FVP240W.ResponseFunction:= FGenericResponseFunction;
+  end;
 end;
 
 function TCPGENERICO.getcountEquipamentos: integer;

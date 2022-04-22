@@ -10,6 +10,7 @@ uses
 Function RetiraInfo(Value : string): string;
 function BuscaChave( lista : TStringList; Ref: String; var posicao:integer): boolean;
 function iif(condicao : boolean; verdade : variant; falso: variant):variant;
+function CaptINET( nro : DWORD) : String;
 
 implementation
 
@@ -62,6 +63,17 @@ begin
        end;
      end;
      result := resultado;
+end;
+
+function CaptINET( nro : DWORD) : String;
+var
+  ip01, ip02, ip03, ip04  : byte;
+begin
+  ip01 := ($FF and nro);
+  ip02 := ($FF00 and nro)  shr 8;
+  ip03 := ($FF0000 and nro)  shr 16;
+  ip04 := ($FF000000 and nro)  shr 32;
+  result := inttostr(ip01) + '.' + inttostr(ip02) + '.' + inttostr(ip03) + '.' + inttostr(ip04)
 end;
 
 end.

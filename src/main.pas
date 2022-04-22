@@ -27,7 +27,8 @@ type
     MenuItem2: TMenuItem;
     Separator1: TMenuItem;
     pmMenu: TPopupMenu;
-    Timer1: TTimer;
+    tmMonitor: TTimer;
+    tmLeituras: TTimer;
     TrayIcon1: TTrayIcon;
 
     procedure btDataBaseClick(Sender: TObject);
@@ -37,7 +38,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
+    procedure tmLeiturasStopTimer(Sender: TObject);
+    procedure tmMonitorTimer(Sender: TObject);
   private
     FCPGENERICO : TCPGENERICO;
     F32bits : boolean; (*Aplicacao 32bits*)
@@ -47,6 +49,7 @@ type
     procedure DesativarsrvCP();
     procedure AtualizaListaTerminais();
     procedure VerificaBaseTerminal();
+    procedure LerBarcode(IP : String; BarCode : String);
   public
 
   end;
@@ -67,6 +70,7 @@ begin
        if F32bits then
        begin
           FCPGENERICO := TCPGENERICO.create(TypeCP_VP240W);
+          FCPGENERICO.ResponseFunction:= @LerBarcode; (*CallBack*)
           TrayIcon1.Visible:=true;
           lbVersao.Caption:= 'LIB:'+ FCPGENERICO.VERSAO;
           AtivasrvCP();
@@ -128,6 +132,7 @@ begin
   dmbase.conectar();
   frmDatabase := TfrmDatabase.create(Self);
   frmdevices := Tfrmdevices.create(Self);
+
 end;
 
 procedure Tfrmmain.FormDestroy(Sender: TObject);
@@ -147,36 +152,49 @@ begin
   frmdevices.show();
 end;
 
-procedure Tfrmmain.Timer1Timer(Sender: TObject);
+procedure Tfrmmain.tmLeiturasStopTimer(Sender: TObject);
+begin
+  if (FCPGENERICO <> nil) then
+  begin
+       FCPGENERICO.getASK();
+
+  end;
+end;
+
+procedure Tfrmmain.tmMonitorTimer(Sender: TObject);
 begin
     (*Atualização de Lista de terminal*)
     AtualizaListaTerminais();
 
 end;
 
-procedure Tfrmmain.SalvarContexto;
+procedure Tfrmmain.SalvarContexto();
 begin
     FSETMAIN.posx := self.left;
     FSetMain.posy := self.top;
     FSETMAIN.SalvaContexto();
 end;
 
-procedure Tfrmmain.Versao;
+procedure Tfrmmain.Versao();
 begin
   lbVersao.Caption:= 'Prd:'+FloatToStrF(Version, fffixed, 1,2);
 end;
 
-procedure Tfrmmain.AtivasrvCP;
+procedure Tfrmmain.AtivasrvCP();
 begin
-  Timer1.Enabled:= true;
+  tmMonitor.Enabled:= true;
+  Sleep(4000); (*Aguarda inicializacao*)
+  Application.ProcessMessages;
+  tmLeituras.Enabled:=true;
 end;
 
-procedure Tfrmmain.DesativarsrvCP;
+procedure Tfrmmain.DesativarsrvCP();
 begin
-  Timer1.Enabled:=False;
+  tmLeituras.Enabled:=false;
+  tmMonitor.Enabled:=False;
 end;
 
-procedure Tfrmmain.AtualizaListaTerminais;
+procedure Tfrmmain.AtualizaListaTerminais();
 begin
    frmdevices.lbDevices.clear;
    frmdevices.lbDevices.Items := FCPGENERICO.lstEquipamento;
@@ -188,6 +206,12 @@ end;
 procedure Tfrmmain.VerificaBaseTerminal();
 begin
     dmbase.VerificaBaseTerminal(frmdevices.lbDevices.Items);
+end;
+
+procedure Tfrmmain.LerBarcode(IP: String; BarCode: String);
+begin
+  ShowMessage(IP);
+
 end;
 
 
