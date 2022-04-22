@@ -49,13 +49,15 @@ type
     procedure DesativarsrvCP();
     procedure AtualizaListaTerminais();
     procedure VerificaBaseTerminal();
-    procedure LerBarcode(IP : String; BarCode : String);
-  public
 
+  public
+    procedure LerBarcode(IP : String; BarCode : String);
   end;
 
 var
   frmmain: Tfrmmain;
+
+procedure LerBC(IP : String; BarCode : String);
 
 implementation
 
@@ -70,7 +72,7 @@ begin
        if F32bits then
        begin
           FCPGENERICO := TCPGENERICO.create(TypeCP_VP240W);
-          FCPGENERICO.ResponseFunction:= @LerBarcode; (*CallBack*)
+          FCPGENERICO.ResponseFunction:= @LerBC; (*CallBack*)
           TrayIcon1.Visible:=true;
           lbVersao.Caption:= 'LIB:'+ FCPGENERICO.VERSAO;
           AtivasrvCP();
@@ -208,12 +210,29 @@ begin
     dmbase.VerificaBaseTerminal(frmdevices.lbDevices.Items);
 end;
 
+
 procedure Tfrmmain.LerBarcode(IP: String; BarCode: String);
+var
+  barcode : string;
+  descricao : string;
 begin
-  ShowMessage(IP);
+  //ShowMessage(IP);
+  if(dmBase.BuscaProduto(Barcode) = true) then
+  begin
+       barcode := dmBase.tbProdutosProdBARCODE;
+       descricao := dmBase.tbProdutosProdNome;
+
+
+  end;
 
 end;
 
+
+procedure LerBC(IP: String; BarCode: String);
+begin
+  frmmain.LerBarcode(ip, BarCode);
+
+end;
 
 
 end.

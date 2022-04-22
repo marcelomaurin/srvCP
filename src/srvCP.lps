@@ -2,15 +2,15 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <BuildModes Active="Default"/>
     <Units Count="15">
       <Unit0>
         <Filename Value="srvCP.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <CursorPos X="37" Y="15"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,10 +19,9 @@
         <ComponentName Value="frmmain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="54"/>
-        <CursorPos X="53" Y="73"/>
-        <UsageCount Value="58"/>
+        <TopLine Value="209"/>
+        <CursorPos X="25" Y="220"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,19 +29,19 @@
         <Filename Value="vp240w.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="vp240W"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="4"/>
         <CursorPos X="65" Y="18"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="cpgenerico.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CPGENERICO"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <CursorPos X="72" Y="14"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -51,10 +50,9 @@
         <ComponentName Value="dmBase"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="90"/>
-        <CursorPos Y="114"/>
-        <UsageCount Value="52"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -65,10 +63,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Setup"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="18"/>
         <CursorPos X="44" Y="31"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -78,29 +76,29 @@
         <ComponentName Value="frmDatabase"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="33"/>
         <CursorPos X="37" Y="64"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="54"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="funcoes.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="44"/>
         <CursorPos X="38" Y="56"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="setmain.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="401"/>
         <CursorPos X="54" Y="448"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -109,10 +107,10 @@
         <ComponentName Value="frmRegistrar"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="2"/>
         <CursorPos X="23" Y="11"/>
-        <UsageCount Value="51"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -123,10 +121,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="TEMSOLUCAO"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="40"/>
         <CursorPos X="33" Y="68"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit10>
@@ -136,9 +134,9 @@
         <ComponentName Value="frmdevices"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="37" Y="14"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit11>
@@ -159,143 +157,157 @@
       </Unit13>
       <Unit14>
         <Filename Value="d:\lazarus\fpc\3.2.0\source\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="702"/>
         <CursorPos X="15" Y="720"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit14>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="127" Column="12" TopLine="97"/>
+        <Filename Value="vp240w.pas"/>
+        <Caret Line="213" Column="37" TopLine="183"/>
       </Position1>
       <Position2>
         <Filename Value="cpgenerico.pas"/>
-        <Caret Line="39" Column="34" TopLine="21"/>
+        <Caret Line="117" Column="49" TopLine="86"/>
       </Position2>
       <Position3>
         <Filename Value="cpgenerico.pas"/>
-        <Caret Line="104" Column="39" TopLine="79"/>
+        <Caret Line="14" Column="72"/>
       </Position3>
       <Position4>
-        <Filename Value="cpgenerico.pas"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="73" Column="53" TopLine="57"/>
       </Position4>
       <Position5>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="29" Column="30"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="76" Column="64" TopLine="61"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="50" Column="25" TopLine="16"/>
+        <Caret Line="73" Column="53" TopLine="58"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="130" Column="3" TopLine="141"/>
+        <Caret Line="219" Column="11" TopLine="201"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="62" Column="18" TopLine="58"/>
+        <Caret Line="60" Column="57" TopLine="46"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="64" Column="18" TopLine="60"/>
+        <Caret Line="54" Column="58" TopLine="33"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="81" Column="41" TopLine="49"/>
+        <Caret Line="75" Column="43" TopLine="67"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="76" Column="21" TopLine="49"/>
+        <Caret Line="219" Column="47" TopLine="206"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="193" Column="28" TopLine="158"/>
+        <Caret Line="54" Column="15" TopLine="47"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="73" Column="53" TopLine="54"/>
+        <Caret Line="75" Column="50" TopLine="206"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
+        <Caret Line="221" Column="11" TopLine="206"/>
       </Position14>
       <Position15>
         <Filename Value="main.pas"/>
-        <Caret Line="52" Column="25" TopLine="22"/>
+        <Caret Line="75" Column="50" TopLine="63"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="73" Column="53" TopLine="42"/>
+        <Caret Line="221" Column="18" TopLine="206"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="207" Column="26" TopLine="180"/>
       </Position17>
       <Position18>
         <Filename Value="main.pas"/>
-        <Caret Line="73" Column="43" TopLine="54"/>
+        <Caret Line="54" Column="43" TopLine="35"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="70" Column="38" TopLine="54"/>
+        <Caret Line="60" Column="21" TopLine="40"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="73" Column="50" TopLine="54"/>
       </Position20>
       <Position21>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="30" Column="40" TopLine="10"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="54" Column="41" TopLine="35"/>
       </Position21>
       <Position22>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="38" Column="120" TopLine="10"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="60" Column="37" TopLine="40"/>
       </Position22>
       <Position23>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="116" TopLine="85"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="75" Column="46" TopLine="55"/>
       </Position23>
       <Position24>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="117" Column="49" TopLine="86"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="214" Column="45" TopLine="194"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="73" Column="53" TopLine="54"/>
+        <Caret Line="80" Column="56" TopLine="63"/>
       </Position25>
       <Position26>
-        <Filename Value="d:\lazarus\fpc\3.2.0\source\rtl\objpas\classes\classesh.inc"/>
-        <Caret Line="720" Column="15" TopLine="702"/>
+        <Filename Value="main.pas"/>
       </Position26>
       <Position27>
-        <Filename Value="vp240w.pas"/>
-        <Caret Line="213" Column="37" TopLine="183"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="54" Column="25" TopLine="44"/>
       </Position27>
       <Position28>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="117" Column="49" TopLine="86"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="114" TopLine="72"/>
       </Position28>
       <Position29>
-        <Filename Value="cpgenerico.pas"/>
-        <Caret Line="14" Column="72"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="31" TopLine="16"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="73" Column="61" TopLine="54"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="60" Column="6" TopLine="49"/>
       </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode=""/>
+      <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <Watches Count="1">
-      <Item1>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="233"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="219"/>
+      </Item>
+    </BreakPoints>
+    <Watches>
+      <Item>
         <Expression Value="TabTerms.TabIP[i]"/>
-      </Item1>
+      </Item>
     </Watches>
   </Debugging>
 </CONFIG>

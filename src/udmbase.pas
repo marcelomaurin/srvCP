@@ -28,6 +28,7 @@ type
   private
 
   public
+    function BuscaProduto(Barcode: string): boolean;
     procedure Conectar();
     procedure Desconectar();
     procedure AtivaTabelas();
@@ -53,6 +54,11 @@ begin
   begin
     Desconectar();
   end;
+end;
+
+function TdmBase.BuscaProduto(Barcode: string): boolean;
+begin
+    return := tbProdutos.locate('prodbarcode',Barcode,[loCaseInsensitive] );
 end;
 
 procedure TdmBase.Conectar();
