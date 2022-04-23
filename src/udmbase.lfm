@@ -1,11 +1,10 @@
 object dmBase: TdmBase
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 438
+  Height = 350
   HorizontalOffset = 0
-  VerticalOffset = 592
-  Width = 519
-  PPI = 120
+  VerticalOffset = 474
+  Width = 415
   object zcon: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = True
@@ -20,14 +19,14 @@ object dmBase: TdmBase
     Database = 'C:\Users\marcelo.maurin\projetos\srvCP\db\srvCP.db'
     Protocol = 'sqlite'
     LibraryLocation = 'C:\Users\marcelo.maurin\projetos\srvCP\sqlite32\sqlite3.dll'
-    Left = 64
-    Top = 50
+    Left = 51
+    Top = 40
   end
   object tbProdutos: TZTable
     Connection = zcon
     TableName = 'produtos'
-    Left = 60
-    Top = 170
+    Left = 48
+    Top = 136
     object tbProdutosidProdutos: TLargeintField
       FieldKind = fkData
       FieldName = 'idProdutos'
@@ -80,8 +79,8 @@ object dmBase: TdmBase
   object tbTerminais: TZTable
     Connection = zcon
     TableName = 'Terminais'
-    Left = 144
-    Top = 170
+    Left = 115
+    Top = 136
     object tbTerminaisidTerminal: TLargeintField
       FieldKind = fkData
       FieldName = 'idTerminal'
@@ -113,7 +112,7 @@ object dmBase: TdmBase
   object qryAux: TZQuery
     Connection = zcon
     Params = <>
-    Left = 448
-    Top = 344
+    Left = 358
+    Top = 275
   end
 end

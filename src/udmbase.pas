@@ -58,7 +58,7 @@ end;
 
 function TdmBase.BuscaProduto(Barcode: string): boolean;
 begin
-    return := tbProdutos.locate('prodbarcode',Barcode,[loCaseInsensitive] );
+    result := tbProdutos.locate('prodbarcode',Barcode,[loCaseInsensitive] );
 end;
 
 procedure TdmBase.Conectar();

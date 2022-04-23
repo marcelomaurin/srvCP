@@ -49,7 +49,7 @@ TVP240W = class(TObject)
 private
   TabTerms: TTABSOCK;
   FResponseFunction: TResponseFunction;
-  function getListEquipamentos(): TStrings;
+  function getListEquipamentos: TStrings;
   procedure setResponseFunction(AValue: TResponseFunction);
 public
   constructor Create();
@@ -57,6 +57,8 @@ public
   procedure LoadLib();
   procedure AtualizaEquipamentos();
   function getASK(): string;
+  procedure SendMsg(IP : string; port : integer; Linha1, Linha2: string; Time : integer);
+  procedure SendAllMsg( Linha1, Linha2 : string; Time : integer);
   PROPERTY VERSAO : DWORD read FVersion;
   property lstEquipamentos : TStrings read getListEquipamentos;
   property ResponseFunction : TResponseFunction read FResponseFunction write setResponseFunction;
@@ -66,25 +68,25 @@ end;
 
 //------------------------------------------------------------------------------
 //function  GetTabConectados(nada: Integer): TTABSOCK; stdcall; far; external 'VP.dll';
-TGetTabConectados = function(nada: Integer): TTABSOCK; stdcall;
+TGetTabConectados = function(nada: Integer): TTABSOCK; stdcall;   far;
 //function Inet_NtoA(nIP: DWORD): PChar ; far; stdcall; external 'VP.dll';
-TInet_NtoA = function(nIP: DWORD): PChar ; far; stdcall;
+TInet_NtoA = function(nIP: DWORD): PChar ; far; stdcall; far;
 //procedure vInitialize; stdcall; far; external 'VP.dll';
-TvInitialize = procedure(); stdcall;
+TvInitialize = procedure(); stdcall;   far;
 //function tc_startserver: Integer; stdcall; far; external 'VP.dll';
-Ttc_startserver = function(): Integer; stdcall;
+Ttc_startserver = function(): Integer; stdcall;  far;
 //function dll_version: DWORD; stdcall; far; external 'VP.dll';
-Tdll_version = function() : DWORD; stdcall;
+Tdll_version = function() : DWORD; stdcall;  far;
 //function bTerminate: Boolean; far; stdcall; external 'VP.dll';
-TbTerminate = function() : Boolean; stdcall;
+TbTerminate = function() : Boolean; stdcall;  far;
 //function bSendDisplayMsg(ID: Integer; Linha1: PChar; Linha2: Pchar; Tempo: Integer): Boolean; stdcall; far; external 'VP.dll';
-TbSendDisplayMsg = function(ID: Integer; Linha1: PChar; Linha2: Pchar; Tempo: Integer): Boolean; stdcall;
+TbSendDisplayMsg = function(ID: Integer; Linha1: PChar; Linha2: Pchar; Tempo: Integer): Boolean; stdcall;  far;
 //function bSendProdNotFound(ID: Integer): Boolean; stdcall; far; external 'VP.dll';
-TbSendProdNotFound = function(ID: Integer): Boolean; stdcall;
+TbSendProdNotFound = function(ID: Integer): Boolean; stdcall; far;
 //function bSendProdPrice(ID: Integer; var NameProd: PChar; var PriceProd : PChar): Boolean; stdcall; far; external 'VP.dll';
-TbSendProdPrice = function(ID: Integer; var NameProd: PChar; var PriceProd : PChar): Boolean; stdcall;
+TbSendProdPrice = function(ID: Integer; var NameProd: PChar; var PriceProd : PChar): Boolean; stdcall; far;
 //function bReceiveBarcode(var stAddress; var BarCode: PChar): Boolean; stdcall; far; external 'VP.dll';
-TbReceiveBarcode = function(var stAddress; var BarCode: PChar): Boolean; stdcall;
+TbReceiveBarcode = function(var stAddress; var BarCode: PChar): Boolean; stdcall; far;
 
 var
   GetTabConectados : TGetTabConectados;
@@ -152,29 +154,6 @@ end;
 
 
 procedure TVP240W.AtualizaEquipamentos();
-begin
-
-end;
-
-function TVP240W.getASK(): string;
-var
- stBarCode: stAddress;
- BarCode: PChar;
-begin
-  if ( bReceiveBarcode(stBarCode, BarCode) )  then
-  begin
-       if(@FResponseFunction<> nil) then  (*Callback*)
-       begin
-            stBarCode.Socket.ToString;
-            FResponseFunction(stBarCode.ip+':'+inttostr(stBarCode.Socket),String(BarCode));
-       end;
-  end;
-
-end;
-
-
-
-function TVP240W.getListEquipamentos(): TStrings;
 var
   i : integer;
   IdxLista: integer;
@@ -199,9 +178,72 @@ begin
       end;
     end;
   end;
-  result :=  FlstEquipamentos;
+
 end;
 
+function TVP240W.getASK(): string;
+var
+ stBarCode: stAddress;
+ BarCode: PChar;
+ info : string;
+begin
+  //BarCode := pchar(info);
+  //stBarCode := stAddress;
+  IF (@bReceiveBarcode <> NIL) THEN
+  BEGIN
+    if ( bReceiveBarcode(stBarCode.Socket, BarCode ))  then
+    begin
+       if(@FResponseFunction<> nil) then  (*Callback*)
+       begin
+            stBarCode.Socket.ToString;
+            FResponseFunction(stBarCode.ip+':'+inttostr(stBarCode.Socket),String(BarCode));
+       end;
+    end;
+
+  end;
+
+end;
+
+procedure TVP240W.SendMsg(IP : string; port : integer; Linha1, Linha2: string; Time : integer);
+var
+ ID: stAddress;
+begin
+  id.Ip :=IP;
+  id.Socket := port;
+  bSendDisplayMsg(ID.Socket,
+                  PChar(Linha1),
+                  PChar(Linha2),
+                  Time
+                  );
+
+end;
+
+procedure TVP240W.SendAllMsg(Linha1, Linha2: string; Time: integer);
+var
+ a : integer;
+ ID: stAddress;
+begin
+
+  for a:= 0 to FlstEquipamentos.Count-1 do
+  begin
+    ID.IP := FlstEquipamentos.Strings[a];
+    ID.Socket:= Integer(FlstEquipamentos.Objects[a]);
+    bSendDisplayMsg(ID.Socket,
+                    PChar(Linha1),
+                    PChar(Linha2),
+                    Time
+                    );
+  end;
+
+end;
+
+
+
+function TVP240W.getListEquipamentos: TStrings;
+begin
+  AtualizaEquipamentos();
+  result :=  FlstEquipamentos;
+end;
 
 
 

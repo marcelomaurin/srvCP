@@ -39,6 +39,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure tmLeiturasStopTimer(Sender: TObject);
+    procedure tmLeiturasTimer(Sender: TObject);
     procedure tmMonitorTimer(Sender: TObject);
   private
     FCPGENERICO : TCPGENERICO;
@@ -73,6 +74,7 @@ begin
        begin
           FCPGENERICO := TCPGENERICO.create(TypeCP_VP240W);
           FCPGENERICO.ResponseFunction:= @LerBC; (*CallBack*)
+          FCPGENERICO.SendAllMsg(FSETMAIN.Label1,FSETMAIN.Label2,2);
           TrayIcon1.Visible:=true;
           lbVersao.Caption:= 'LIB:'+ FCPGENERICO.VERSAO;
           AtivasrvCP();
@@ -91,6 +93,8 @@ begin
   frmSetup.cbTipo.ItemIndex :=  FSETMAIN.TipoCP;
   frmSetup.cbModelo.ItemIndex :=  FSETMAIN.ModeloCP;
   frmSetup.edFileVP240W.Text:= FSETMAIN.PATHVP240W;
+  frmSetup.edLabel1.text := FSETMAIN.Label1;
+  frmSetup.edLabel2.text := FSETMAIN.Label2;
 
   frmSetup.showmodal();
   frmSetup := nil;
@@ -135,6 +139,7 @@ begin
   frmDatabase := TfrmDatabase.create(Self);
   frmdevices := Tfrmdevices.create(Self);
 
+
 end;
 
 procedure Tfrmmain.FormDestroy(Sender: TObject);
@@ -156,11 +161,18 @@ end;
 
 procedure Tfrmmain.tmLeiturasStopTimer(Sender: TObject);
 begin
+
+end;
+
+procedure Tfrmmain.tmLeiturasTimer(Sender: TObject);
+begin
+  Application.ProcessMessages();
   if (FCPGENERICO <> nil) then
   begin
        FCPGENERICO.getASK();
 
   end;
+  Application.ProcessMessages;
 end;
 
 procedure Tfrmmain.tmMonitorTimer(Sender: TObject);
@@ -187,7 +199,10 @@ begin
   tmMonitor.Enabled:= true;
   Sleep(4000); (*Aguarda inicializacao*)
   Application.ProcessMessages;
+  (*Atualização de Lista de terminal*)
+  AtualizaListaTerminais();
   tmLeituras.Enabled:=true;
+
 end;
 
 procedure Tfrmmain.DesativarsrvCP();
@@ -213,18 +228,15 @@ end;
 
 procedure Tfrmmain.LerBarcode(IP: String; BarCode: String);
 var
-  barcode : string;
-  descricao : string;
+  lbarcode : string;
+  ldescricao : string;
 begin
   //ShowMessage(IP);
   if(dmBase.BuscaProduto(Barcode) = true) then
   begin
-       barcode := dmBase.tbProdutosProdBARCODE;
-       descricao := dmBase.tbProdutosProdNome;
-
-
+       lbarcode := dmBase.tbProdutosProdBARCODE.ToString;
+       ldescricao := dmBase.tbProdutosProdNome.ToString;
   end;
-
 end;
 
 
