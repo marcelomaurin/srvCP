@@ -11,7 +11,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{15E35926-C8B9-4F48-BA73-8986FF92FAD2}
+AppId={{15E35226-C1B9-4348-B173-8186F192F1D1}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -21,7 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputBaseFilename=fila_setup_18
+OutputBaseFilename=Install_srvSC_03
 Compression=lzma
 SolidCompression=yes
 
@@ -35,37 +35,69 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 
 [Types]
+Name: "FULL"; Description:  {cm:T_FULL}
 Name: "TANCA"; Description:  {cm:T_TANCA}
 Name: "srvCP"; Description: {cm:T_srvCP}
+Name: "sqlite32"; Description: {cm:T_sqlite32}
+Name: "sqlite64"; Description: {cm:T_sqlite64}
+Name: "tools"; Description: {cm:T_tools}
+Name: "db"; Description: {cm:T_db}
+Name: "import"; Description: {cm:T_import}
 
 [Components]
-Name: "srvCP"; Description: "Arquivos do srvCP"; Types: srvCP;
-Name: "TANCA"; Description: "Instalação dos componenentes do Tanca"; Types:  Fila  TANCA;
+Name: "Full"; Description: "Todos os arquivos do srvCP"; Types: FULL srvCP Tanca sqlite32 sqlite64 tools db import;
+Name: "srvCP"; Description: "Arquivos do srvCP"; Types: FULL srvCP;
+Name: "Tanca"; Description: "Instalação dos componenentes do Tanca"; Types: FULL TANCA;
+Name: "sqlite32"; Description: "Instalação dos componenentes do sqlite32"; Types: FULL sqlite32;
+Name: "sqlite64"; Description: "Instalação dos componenentes do sqlite64"; Types: FULL sqlite64;
+Name: "tools"; Description: "Instalação dos componenentes do sqlite64"; Types: FULL tools;
+Name: "db"; Description: "Instalação dos componenentes do sqlite64"; Types: FULL db;
+Name: "import"; Description: "Instalação dos componenentes do sqlite64"; Types: FULL import;
 
 
 [CustomMessages]
-T_Elgin=TANCA
-TD_Elgin=Instalação padrão do srvCP com drivers do TANCA
-T_Fila=srvCP
-TD_Fila=Instalação padrão do srvCP sem drivers do fabricante 
+T_FULL=FULL
+TD_FULL=INSTALACAO COM TUDO
+T_Tanca=Tanca
+TD_Tanca=Instalação padrão da dll com drivers do TANCA VP-240W 
+T_srvCP=srvCP
+TD_srvCP=Instalação padrão do srvCP sem drivers
+T_sqlite32=sqlite32
+TD_sqlite32=Instalação dos componentes sqlite de conexao
+T_sqlite64=sqlite64
+TD_sqlite64=Instalação dos componentes sqlite64 de conexao
+T_tools=sqlite-tools-win32
+TD_tools=Instalação das ferramentas do Sqlite tools
+T_db=database
+TD_db=Banco de dados padrão
+T_import=import
+TD_import=Espaco de banco de dados de importação de dados
+
+
 
 ; [Setup], [Files] etc sections go here
 [Code]
 #define MSIDT_CustomType "Whatever"
-#include "DescriptiveTypes.isi"
-procedure InitializeWizard();
-begin
- InitializeDescriptiveTypes();
-end;
+//include "DescriptiveTypes.isi"
+//procedure InitializeWizard();
+//begin
+// InitializeDescriptiveTypes();
+//end;
 
 
 
 [Files]
 Source: "D:\projetos\maurinsoft\srvCP\src\srvCP.exe"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "D:\projetos\maurinsoft\fila\cliente.cfg"; DestDir: "{app}"; 
-Source: "D:\projetos\maurinsoft\srv\drivers\Elgin i9\ELGIN Printer Driver_v-1.6.6.exe"; DestDir: "{app}"; Components: TANCA ;
-Source: "D:\projetos\maurinsoft\fila\drivers\POS58\POS Printer Driver Setup .exe"; DestDir: "{app}"; Components: Pos58;
-Source: "D:\projetos\maurinsoft\fila\drivers\POS5811-DD\POS Printer Driver Setup .exe"; DestDir: "{app}"; Components: Pos5811;
+Source: "D:\projetos\maurinsoft\srvCP\src\VP_v3.dll"; DestDir: "{app}"; Components: Tanca ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite32\sqlite3.dll"; DestDir: "{app}\sqlite32"; Components: sqlite32 ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite32\sqlite3.def"; DestDir: "{app}\sqlite32"; Components: sqlite32 ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite64\sqlite3.dll"; DestDir: "{app}\sqlite64"; Components: sqlite64 ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite64\sqlite3.def"; DestDir: "{app}\sqlite64"; Components: sqlite64 ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite-tools-win32\sqlite3.exe"; DestDir: "{app}\sqlite-tools-win32"; Components: tools ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite-tools-win32\sqldiff.exe"; DestDir: "{app}\sqlite-tools-win32"; Components: tools ;
+Source: "D:\projetos\maurinsoft\srvCP\sqlite-tools-win32\sqlite3_analyzer.exe"; DestDir: "{app}\sqlite-tools-win32"; Components: tools ;
+Source: "D:\projetos\maurinsoft\srvCP\db\srvCP.db"; DestDir: "{app}\db"; Components: db;
+Source: "D:\projetos\maurinsoft\srvCP\db\srvCP.db"; DestDir: "{app}\import"; Components: import;
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -73,8 +105,5 @@ Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\ELGIN Printer Driver_v-1.6.6.exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Components: Elgin;
-Filename: "{app}\POS Printer Driver Setup .exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Components: Pos58; 
-Filename: "{app}\POS Printer Driver Setup .exe"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Components: Pos5811; 
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
