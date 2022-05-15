@@ -5,13 +5,14 @@ unit udmbase;
 interface
 
 uses
-  Classes, SysUtils, DB, ZConnection, ZDataset, setmain, Dialogs;
+  Classes, SysUtils, DB, ZConnection, ZDataset, setmain, Dialogs, log;
 
 type
 
   { TdmBase }
 
   TdmBase = class(TDataModule)
+    qryauximport: TZQuery;
     tbProdutosidProdutos: TLargeintField;
     tbProdutosPROCAtivo: TBooleanField;
     tbProdutosProdBARCODE: TStringField;
@@ -24,10 +25,12 @@ type
     tbProdutos: TZTable;
     tbTerminais: TZTable;
     qryAux: TZQuery;
+    zconImport: TZConnection;
     procedure DataModuleDestroy(Sender: TObject);
   private
 
   public
+    function BuscaProduto(Barcode: string): boolean;
     procedure Conectar();
     procedure Desconectar();
     procedure AtivaTabelas();
@@ -55,13 +58,25 @@ begin
   end;
 end;
 
+function TdmBase.BuscaProduto(Barcode: string): boolean;
+var
+  resultado : boolean;
+begin
+    resultado := tbProdutos.locate('prodbarcode',Barcode,[loCaseInsensitive] );
+    frmlog.log('TdmBase.BuscaProduto - Barcode:'+barcode+' - Resultado:'+ booltostr(resultado));
+    result := resultado;
+
+end;
+
 procedure TdmBase.Conectar();
 begin
     {$ifdef CPU32}
     zcon.LibraryLocation:= '.\..\sqlite32\sqlite3.dll';
+    zconImport.LibraryLocation:= '.\..\sqlite32\sqlite3.dll';
     {$endif}
     {$ifdef CPU64}
     zcon.LibraryLocation:= '.\..\sqlite64\sqlite3.dll';
+    zconImport.LibraryLocation:= '.\..\sqlite32\sqlite3.dll';
     {$endif}
 
     if FileExists(FSETMAIN.Database) then
@@ -112,7 +127,7 @@ begin
   for a := 0 to lst.Count-1 do
   begin
       tbTerminais.Locate('descricao',lst[a], [loPartialKey]);
-      if (tbTerminais.RecordCount=0) then
+      if(tbTerminais.RecordCount=0) then
       begin
         tbTerminais.Append;
         tbTerminais.FieldByName('Descricao').asstring := lst[a];

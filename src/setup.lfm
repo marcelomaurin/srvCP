@@ -105,8 +105,8 @@ object frmSetup: TfrmSetup
     Left = 13
     Height = 15
     Top = 144
-    Width = 37
-    Caption = 'Label1:'
+    Width = 44
+    Caption = 'Linha01:'
     ParentColor = False
   end
   object edLabel1: TEdit
@@ -120,8 +120,8 @@ object frmSetup: TfrmSetup
     Left = 13
     Height = 15
     Top = 192
-    Width = 37
-    Caption = 'Label2:'
+    Width = 38
+    Caption = 'Linha2:'
     ParentColor = False
   end
   object edLabel2: TEdit

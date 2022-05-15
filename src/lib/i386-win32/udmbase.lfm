@@ -2,8 +2,8 @@ object dmBase: TdmBase
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 350
-  HorizontalOffset = -694
-  VerticalOffset = 489
+  HorizontalOffset = -578
+  VerticalOffset = 544
   Width = 415
   object zcon: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -114,5 +114,28 @@ object dmBase: TdmBase
     Params = <>
     Left = 358
     Top = 275
+  end
+  object zconImport: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = True
+    ClientCodepage = 'UTF-8'
+    Catalog = 'main'
+    Properties.Strings = (
+      'AutoEncodeStrings=True'
+      'controls_cp=CP_UTF8'
+      'codepage=UTF-8'
+    )
+    Port = 0
+    Database = 'C:\Users\marcelo.maurin\projetos\srvCP\db\srvCP.db'
+    Protocol = 'sqlite'
+    LibraryLocation = 'C:\Users\marcelo.maurin\projetos\srvCP\sqlite32\sqlite3.dll'
+    Left = 344
+    Top = 24
+  end
+  object qryauximport: TZQuery
+    Connection = zconImport
+    Params = <>
+    Left = 344
+    Top = 80
   end
 end

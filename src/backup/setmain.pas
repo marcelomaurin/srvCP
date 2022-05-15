@@ -54,6 +54,8 @@ type
         FModeloCP : integer;
         FDatabase : string;
         FPATHVP240W : string;
+        FLabel1 : String;
+        FLabel2 : String;
 
         procedure Default();
         procedure SetDatabase(AValue: string);
@@ -80,6 +82,8 @@ type
         procedure SetTipoCP(value: integer);
         procedure SetModeloCP(value: integer);
         procedure SetPATHVP240W(value : string);
+        procedure SetLabel1(value : string);
+        procedure SetLabel2(value : string);
 
 
   public
@@ -109,6 +113,8 @@ type
         property ModeloCP : integer read FModeloCP write SetModeloCP;
         property Database : string read FDatabase write SetDatabase;
         property PATHVP240W : string read FPATHVP240W write SetPATHVP240W;
+        property Label1 : string read FLabel1 write SetLabel1;
+        property Label2 : string read FLabel2 write SetLabel1;
   end;
 
   var
@@ -232,6 +238,16 @@ begin
   FPATHVP240W := value;
 end;
 
+procedure TSetMain.SetLabel1(value: string);
+begin
+  FLabel1 := value;
+end;
+
+procedure TSetMain.SetLabel2(value: string);
+begin
+  FLabel2 := value;
+end;
+
 
 
 
@@ -276,6 +292,8 @@ begin
     {$endif}
     FTipoCP:= integer(CPGERTEC); (* Tipo de equipamento GERTEC *)
     FModeloCP := integer(CVP240W); (* Modelo padrão VP240-W *)
+    FLabel1 := 'Maurinsoft ';
+    FLabel2 := 'Obrigado Volte Sempre ';
 end;
 
 procedure TSetMain.SetDatabase(AValue: string);
@@ -380,6 +398,19 @@ begin
     begin
       FDATABASE := RetiraInfo(arquivo.Strings[posicao]);
     end;
+    if  BuscaChave(arquivo,'PATHVP240W:',posicao) then
+    begin
+      PATHVP240W := RetiraInfo(arquivo.Strings[posicao]);
+    end;
+    if  BuscaChave(arquivo,'LABEL1:',posicao) then
+    begin
+      FLabel1 := RetiraInfo(arquivo.Strings[posicao]);
+    end;
+    if  BuscaChave(arquivo,'LABEL2:',posicao) then
+    begin
+      FLabel2 := RetiraInfo(arquivo.Strings[posicao]);
+    end;
+
 end;
 
 //Metodo construtor
@@ -441,6 +472,9 @@ begin
   arquivo.Append('TIPOCP:'+ inttostr(FTipoCP));
   arquivo.Append('MODELOCP:'+ inttostr(FModeloCP));
   arquivo.Append('DATABASE:'+ FDATABASE);
+  arquivo.Append('PATHVP240W:'+ FPATHVP240W);
+  arquivo.Append('LABEL1:'+ FLABEL1);
+  arquivo.Append('LABEL2:'+ FLABEL2);
   arquivo.SaveToFile(fpath+filename);
 end;
 
