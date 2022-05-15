@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, main, vp240W, CPGENERICO, udmbase, Setup, database, funcoes, setmain,
-  registro, zcomponent, lnetbase, lnetvisual, TEMSOLUCAO, devices
+  registro, zcomponent, lnetbase, lnetvisual, TEMSOLUCAO, devices, split
   { you can add units after this };
 
 {$R *.res}
