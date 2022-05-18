@@ -2,7 +2,7 @@ object dmBase: TdmBase
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 350
-  HorizontalOffset = -578
+  HorizontalOffset = 0
   VerticalOffset = 544
   Width = 415
   object zcon: TZConnection
@@ -16,9 +16,9 @@ object dmBase: TdmBase
       'codepage=UTF-8'
     )
     Port = 0
-    Database = 'C:\Users\marcelo.maurin\projetos\srvCP\db\srvCP.db'
+    Database = '.\db\srvCP.db'
     Protocol = 'sqlite'
-    LibraryLocation = 'C:\Users\marcelo.maurin\projetos\srvCP\sqlite32\sqlite3.dll'
+    LibraryLocation = '.\sqlite32\sqlite3.dll'
     Left = 51
     Top = 40
   end

@@ -42,6 +42,7 @@ type
         FSTBIT : integer;
         FEmpresa : string;
         FLocalizacao : string;
+
         FTipo1: string;
         FTipo2: string;
         FTipo3: string;
@@ -54,6 +55,7 @@ type
         FModeloCP : integer;
         FDatabase : string;
         FPATHVP240W : string;
+        FBancoDLL : string;
         FLabel1 : String;
         FLabel2 : String;
 
@@ -82,6 +84,7 @@ type
         procedure SetTipoCP(value: integer);
         procedure SetModeloCP(value: integer);
         procedure SetPATHVP240W(value : string);
+        procedure SetBANCODLL(value : string);
         procedure SetLabel1(value : string);
         procedure SetLabel2(value : string);
 
@@ -113,8 +116,9 @@ type
         property ModeloCP : integer read FModeloCP write SetModeloCP;
         property Database : string read FDatabase write SetDatabase;
         property PATHVP240W : string read FPATHVP240W write SetPATHVP240W;
+        property BancoDLL : string read FBANCODLL write SetBANCODLL;
         property Label1 : string read FLabel1 write SetLabel1;
-        property Label2 : string read FLabel2 write SetLabel1;
+        property Label2 : string read FLabel2 write SetLabel2;
   end;
 
   var
@@ -238,6 +242,12 @@ begin
   FPATHVP240W := value;
 end;
 
+procedure TSetMain.SetBANCODLL(value: string);
+begin
+  FBANCODLL := value;
+end;
+
+
 procedure TSetMain.SetLabel1(value: string);
 begin
   FLabel1 := value;
@@ -275,20 +285,21 @@ begin
     FContagem1 := 0;
     FContagem2 := 0;
     FContagem3 := 0;
-    FPainel := '192.168.0.108';
+    FPainel := '127.0.0.1';
     FTipoCP := 0;
     FModeloCP := 0;
 
+
     {$IFDEF WINDOWS}
-    FDatabase := '.\..\db\srvCP.db';
-    FPATHVP240W := '';
+    FDatabase := ExtractFilePath(ApplicationName)+'/db/srvCP.db';
     {$ENDIF}
     {$ifdef CPU32}
-    FPATHVP240W := ExtractFilePath(ApplicationName)+'VP.dll';
+    FPATHVP240W := ExtractFilePath(ApplicationName)+'VP_v3.dll';
+    FBancoDLL := ExtractFilePath(ApplicationName)+'/sqlite32/sqlite3.dll';
     {$endif}
-
     {$ifdef CPU64}
-    FPATHVP240W := '';
+    FPATHVP240W := ExtractFilePath(ApplicationName)+'VP_v3.dll';
+    FBancoDLL := ExtractFilePath(ApplicationName)+'/sqlite64/sqlite3.dll';
     {$endif}
     FTipoCP:= integer(CPGERTEC); (* Tipo de equipamento GERTEC *)
     FModeloCP := integer(CVP240W); (* Modelo padrão VP240-W *)
@@ -402,6 +413,11 @@ begin
     begin
       PATHVP240W := RetiraInfo(arquivo.Strings[posicao]);
     end;
+    //FBancoDLL
+    if  BuscaChave(arquivo,'BancoDLL:',posicao) then
+    begin
+      FBancoDLL := RetiraInfo(arquivo.Strings[posicao]);
+    end;
     if  BuscaChave(arquivo,'LABEL1:',posicao) then
     begin
       FLabel1 := RetiraInfo(arquivo.Strings[posicao]);
@@ -473,6 +489,7 @@ begin
   arquivo.Append('MODELOCP:'+ inttostr(FModeloCP));
   arquivo.Append('DATABASE:'+ FDATABASE);
   arquivo.Append('PATHVP240W:'+ FPATHVP240W);
+  arquivo.Append('BANCODLL:'+ FBANCODLL);
   arquivo.Append('LABEL1:'+ FLABEL1);
   arquivo.Append('LABEL2:'+ FLABEL2);
   arquivo.SaveToFile(fpath+filename);

@@ -45,6 +45,7 @@ object frmDatabase: TfrmDatabase
           Columns = <>
           DataSource = dsProdutos
           ParentFont = False
+          PopupMenu = pmgrid
           TabOrder = 0
         end
       end
@@ -166,5 +167,13 @@ object frmDatabase: TfrmDatabase
     DataSet = dmBase.tbTerminais
     Left = 538
     Top = 326
+  end
+  object pmgrid: TPopupMenu
+    Left = 261
+    Top = 208
+    object miClearAll: TMenuItem
+      Caption = 'Clear All'
+      OnClick = miClearAllClick
+    end
   end
 end

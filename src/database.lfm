@@ -15,10 +15,10 @@ object frmDatabase: TfrmDatabase
     Height = 378
     Top = 0
     Width = 589
-    ActivePage = tbImport
+    ActivePage = tbProducts
     Align = alClient
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object tbProducts: TTabSheet
       Caption = 'Products'
@@ -45,6 +45,7 @@ object frmDatabase: TfrmDatabase
           Columns = <>
           DataSource = dsProdutos
           ParentFont = False
+          PopupMenu = pmgrid
           TabOrder = 0
         end
       end
@@ -149,7 +150,7 @@ object frmDatabase: TfrmDatabase
         ItemIndex = 0
         Items.Strings = (
           'Not defined'
-          'SQLITE/TEMSOLUCAO'
+          'SQLITE'
         )
         ParentFont = False
         TabOrder = 1
@@ -166,5 +167,13 @@ object frmDatabase: TfrmDatabase
     DataSet = dmBase.tbTerminais
     Left = 538
     Top = 326
+  end
+  object pmgrid: TPopupMenu
+    Left = 261
+    Top = 208
+    object miClearAll: TMenuItem
+      Caption = 'Clear All'
+      OnClick = miClearAllClick
+    end
   end
 end

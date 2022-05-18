@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, ExtCtrls,
-  DBGrids, DBCtrls, StdCtrls, udmbase, DB, TemSolucao;
+  DBGrids, DBCtrls, StdCtrls, Menus, udmbase, DB, TemSolucao;
 
 type
 
@@ -22,19 +22,22 @@ type
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
     Label1: TLabel;
+    miClearAll: TMenuItem;
     PageControl1: TPageControl;
     Panel1: TPanel;
     Panel2: TPanel;
+    pmgrid: TPopupMenu;
     tbProducts: TTabSheet;
     tbTerms: TTabSheet;
     tbImport: TTabSheet;
     procedure btImportarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure miClearAllClick(Sender: TObject);
   private
-    procedure FecharTabelas();
-    procedure AbrirTabelas();
-    procedure ImportaTemSolucao();
+    procedure FecharTabelas;
+    procedure AbrirTabelas;
+    procedure ImportaTemSolucao;
   public
 
   end;
@@ -69,6 +72,26 @@ procedure TfrmDatabase.FormDestroy(Sender: TObject);
 begin
   FecharTabelas();
 end;
+
+procedure TfrmDatabase.miClearAllClick(Sender: TObject);
+begin
+   case QuestionDlg('Delete All', 'Confirm, all data destroy?', mtConfirmation, [mrNo, '&No','IsDefault',
+                   mrYes,'&Yes'],0) of
+  mrYES :
+    begin
+      dmBase.DeleteAllProdutos();
+
+    end;
+  mrNo :
+    begin
+      ShowMessage('Canceled Operation!');
+    end;
+  end;
+
+end;
+
+
+
 
 procedure TfrmDatabase.FecharTabelas;
 begin

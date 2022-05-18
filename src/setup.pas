@@ -17,7 +17,9 @@ type
     btCancel: TButton;
     cbTipo: TComboBox;
     cbModelo: TComboBox;
+    edDllDatabase: TFileNameEdit;
     edFileVP240W: TFileNameEdit;
+    edFileDatabase: TFileNameEdit;
     edLabel1: TEdit;
     edLabel2: TEdit;
     Label1: TLabel;
@@ -25,6 +27,8 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
     procedure btCancelClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
   private
@@ -52,6 +56,8 @@ begin
   FSETMAIN.TipoCP:= cbTipo.ItemIndex;
   FSETMAIN.ModeloCP:=cbModelo.ItemIndex;
   FSETMAIN.PATHVP240W:=edFileVP240W.Text;
+  FSETMAIN.Database := edFileDatabase.text;
+  FSETMAIN.BancoDLL  := edDllDatabase.text;
   FSETMAIN.Label1:= edLabel1.Text;
   FSETMAIN.Label2:= edLabel2.Text;
   close;

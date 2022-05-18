@@ -1,10 +1,10 @@
 object frmSetup: TfrmSetup
   Left = -574
-  Height = 307
+  Height = 370
   Top = 13
   Width = 477
   Caption = 'Setup '
-  ClientHeight = 307
+  ClientHeight = 370
   ClientWidth = 477
   Position = poMainFormCenter
   LCLVersion = '2.0.12.0'
@@ -18,7 +18,7 @@ object frmSetup: TfrmSetup
     Items.Strings = (
       'No define'
       'GERTEC'
-      'Tança'
+      'TANCA'
     )
     ParentFont = False
     TabOrder = 0
@@ -51,31 +51,31 @@ object frmSetup: TfrmSetup
     ItemIndex = 0
     Items.Strings = (
       'No define'
-      'TANCA VP240W'
+      'TANCA - VP240W'
     )
     ParentFont = False
     TabOrder = 1
     Text = 'No define'
   end
   object btSave: TButton
-    Left = 378
+    Left = 368
     Height = 25
-    Top = 262
+    Top = 336
     Width = 75
     Caption = 'Save'
     OnClick = btSaveClick
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 7
   end
   object btCancel: TButton
-    Left = 282
+    Left = 272
     Height = 25
-    Top = 262
+    Top = 336
     Width = 75
     Caption = 'Cancel'
     OnClick = btCancelClick
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 6
   end
   object edFileVP240W: TFileNameEdit
     Left = 13
@@ -90,21 +90,21 @@ object frmSetup: TfrmSetup
     NumGlyphs = 1
     MaxLength = 0
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 2
   end
   object Label3: TLabel
     Left = 13
     Height = 15
     Top = 96
-    Width = 48
-    Caption = 'File Data:'
+    Width = 64
+    Caption = 'TANCA DLL:'
     ParentColor = False
     ParentFont = False
   end
   object Label4: TLabel
     Left = 13
     Height = 15
-    Top = 144
+    Top = 240
     Width = 44
     Caption = 'Linha01:'
     ParentColor = False
@@ -112,23 +112,71 @@ object frmSetup: TfrmSetup
   object edLabel1: TEdit
     Left = 13
     Height = 23
-    Top = 160
+    Top = 256
     Width = 315
-    TabOrder = 5
+    TabOrder = 4
   end
   object Label5: TLabel
     Left = 13
     Height = 15
-    Top = 192
-    Width = 37
-    Caption = 'Label2:'
+    Top = 288
+    Width = 38
+    Caption = 'Linha2:'
     ParentColor = False
   end
   object edLabel2: TEdit
     Left = 13
     Height = 23
-    Top = 208
+    Top = 304
     Width = 315
-    TabOrder = 6
+    TabOrder = 5
+  end
+  object edFileDatabase: TFileNameEdit
+    Left = 13
+    Height = 23
+    Top = 164
+    Width = 231
+    DialogTitle = 'Select import file'
+    Filter = 'Databases|*.db|All files|*.*'
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Label6: TLabel
+    Left = 13
+    Height = 15
+    Top = 144
+    Width = 78
+    Caption = 'Data Base File :'
+    ParentColor = False
+    ParentFont = False
+  end
+  object edDllDatabase: TFileNameEdit
+    Left = 13
+    Height = 23
+    Top = 212
+    Width = 231
+    DialogTitle = 'Select import file'
+    Filter = 'DLL |*.dll|All files|*.*'
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    ParentFont = False
+    TabOrder = 8
+  end
+  object Label7: TLabel
+    Left = 13
+    Height = 15
+    Top = 192
+    Width = 117
+    Caption = 'Data Base SQLite DLL :'
+    ParentColor = False
+    ParentFont = False
   end
 end

@@ -10,7 +10,7 @@ uses
   split, log;
 
 Const
-  Version : double = 0.3;
+  Version : double = 0.4;
 
 type
 
@@ -110,6 +110,8 @@ begin
   frmSetup.cbTipo.ItemIndex :=  FSETMAIN.TipoCP;
   frmSetup.cbModelo.ItemIndex :=  FSETMAIN.ModeloCP;
   frmSetup.edFileVP240W.Text:= FSETMAIN.PATHVP240W;
+  frmSetup.edFileDatabase.text := FSETMAIN.Database;
+  frmSetup.ed.text := FSETMAIN.BancoDLL;
   frmSetup.edLabel1.text := FSETMAIN.Label1;
   frmSetup.edLabel2.text := FSETMAIN.Label2;
 

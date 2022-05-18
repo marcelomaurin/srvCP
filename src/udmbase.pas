@@ -71,13 +71,23 @@ end;
 procedure TdmBase.Conectar();
 begin
     {$ifdef CPU32}
-    zcon.LibraryLocation:= '.\..\sqlite32\sqlite3.dll';
-    zconImport.LibraryLocation:= '.\..\sqlite32\sqlite3.dll';
+    //zcon.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite32\sqlite3.dll';
+    //zconImport.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite32\sqlite3.dll';
     {$endif}
     {$ifdef CPU64}
-    zcon.LibraryLocation:= '.\..\sqlite64\sqlite3.dll';
-    zconImport.LibraryLocation:= '.\..\sqlite64\sqlite3.dll';
+    //zcon.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite64\sqlite3.dll';
+    //zconImport.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite64\sqlite3.dll';
     {$endif}
+    if FileExists(FSETMAIN.BancoDLL) then
+    begin
+      zcon.LibraryLocation:= FSETMAIN.BancoDLL;
+      zconImport.LibraryLocation:= FSETMAIN.BancoDLL;
+    end
+     else
+    begin
+      ShowMessage('DLL  '+FSETMAIN.BancoDLL + ' not exit ');
+      exit();
+    end;
 
     if FileExists(FSETMAIN.Database) then
     begin
@@ -88,7 +98,7 @@ begin
     else
     begin
       ShowMessage('Database '+FSETMAIN.database + ' not exit ');
-      exit();
+      //exit();
     end;
 end;
 
