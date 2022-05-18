@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "srvCP"
-#define MyAppVersion "0.3"
+#define MyAppVersion "0.4"
 #define MyAppPublisher "maurinsoft"
 #define MyAppURL "http://maurinsoft.com.br"
 #define MyAppExeName "srvCP.exe"
@@ -21,7 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputBaseFilename=Install_srvSC_03
+OutputBaseFilename=Install_srvSC_04
 Compression=lzma
 SolidCompression=yes
 
@@ -88,7 +88,7 @@ TD_import=Espaco de banco de dados de importação de dados
 
 [Files]
 Source: "D:\projetos\maurinsoft\srvCP\src\srvCP.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\projetos\maurinsoft\srvCP\src\VP_v3.dll"; DestDir: "{app}"; Components: Tanca ;
+Source: "D:\projetos\maurinsoft\srvCP\VP_v3.dll"; DestDir: "{app}"; Components: Tanca ;
 Source: "D:\projetos\maurinsoft\srvCP\sqlite32\sqlite3.dll"; DestDir: "{app}\sqlite32"; Components: sqlite32 ;
 Source: "D:\projetos\maurinsoft\srvCP\sqlite32\sqlite3.def"; DestDir: "{app}\sqlite32"; Components: sqlite32 ;
 Source: "D:\projetos\maurinsoft\srvCP\sqlite64\sqlite3.dll"; DestDir: "{app}\sqlite64"; Components: sqlite64 ;
