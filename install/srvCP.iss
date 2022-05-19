@@ -87,7 +87,7 @@ TD_import=Espaco de banco de dados de importação de dados
 
 
 [Files]
-Source: "D:\projetos\maurinsoft\srvCP\src\srvCP.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\projetos\maurinsoft\srvCP\srvCP.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\projetos\maurinsoft\srvCP\VP_v3.dll"; DestDir: "{app}"; Components: Tanca ;
 Source: "D:\projetos\maurinsoft\srvCP\sqlite32\sqlite3.dll"; DestDir: "{app}\sqlite32"; Components: sqlite32 ;
 Source: "D:\projetos\maurinsoft\srvCP\sqlite32\sqlite3.def"; DestDir: "{app}\sqlite32"; Components: sqlite32 ;
