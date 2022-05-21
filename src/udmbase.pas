@@ -136,9 +136,11 @@ var
 begin
   for a := 0 to lst.Count-1 do
   begin
-      tbTerminais.Locate('descricao',lst[a], [loPartialKey]);
-      if(tbTerminais.RecordCount=0) then
+
+      frmLog.log('TdmBase.VerificaBaseTerminal - Descricao:'+lst[a]+' Count:'+inttostr(tbTerminais.RecordCount));
+      if(tbTerminais.Locate('IP',lst[a], [loPartialKey])=false) then
       begin
+        frmLog.log('TdmBase.VerificaBaseTerminal - Cadastrou terminal '+lst[a]);
         tbTerminais.Append;
         tbTerminais.FieldByName('Descricao').asstring := lst[a];
         tbTerminais.FieldByName('IP').asstring := lst[a];

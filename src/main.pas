@@ -10,7 +10,7 @@ uses
   split, log;
 
 Const
-  Version : double = 0.4;
+  Version : double = 0.5;
 
 type
 

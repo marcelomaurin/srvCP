@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <CursorPos Y="17"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,9 +19,9 @@
         <ComponentName Value="frmmain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="100"/>
-        <CursorPos Y="114"/>
-        <UsageCount Value="117"/>
+        <TopLine Value="92"/>
+        <CursorPos X="9" Y="98"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,9 +30,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="vp240W"/>
         <EditorIndex Value="13"/>
-        <TopLine Value="71"/>
-        <CursorPos Y="71"/>
-        <UsageCount Value="117"/>
+        <TopLine Value="189"/>
+        <CursorPos Y="204"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -40,9 +40,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="CPGENERICO"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="219"/>
-        <CursorPos Y="232"/>
-        <UsageCount Value="117"/>
+        <TopLine Value="91"/>
+        <CursorPos Y="101"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -52,9 +52,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="85"/>
-        <CursorPos X="44" Y="88"/>
-        <UsageCount Value="111"/>
+        <TopLine Value="124"/>
+        <CursorPos X="21" Y="140"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -65,11 +65,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Setup"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="39"/>
-        <CursorPos X="46" Y="59"/>
-        <UsageCount Value="111"/>
+        <TopLine Value="9"/>
+        <CursorPos X="59" Y="51"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -82,7 +81,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="68"/>
         <CursorPos X="43" Y="78"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -92,7 +91,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="44"/>
         <CursorPos X="35" Y="60"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="120"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -101,7 +100,7 @@
         <EditorIndex Value="10"/>
         <TopLine Value="405"/>
         <CursorPos X="23" Y="415"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="120"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -113,7 +112,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="2"/>
         <CursorPos X="39" Y="12"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="120"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -127,7 +126,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="63"/>
         <CursorPos X="41" Y="65"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit10>
@@ -138,8 +137,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="37" Y="14"/>
-        <UsageCount Value="92"/>
+        <CursorPos X="67" Y="24"/>
+        <UsageCount Value="102"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit11>
@@ -151,7 +150,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
         <CursorPos X="21" Y="10"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="79"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit12>
@@ -161,10 +160,11 @@
         <ComponentName Value="frmLog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="12"/>
         <TopLine Value="28"/>
-        <CursorPos X="41" Y="55"/>
-        <UsageCount Value="38"/>
+        <CursorPos X="65" Y="36"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit13>
@@ -172,7 +172,7 @@
         <Filename Value="udmbase.lfm"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="40" Y="12"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit14>
       <Unit15>
@@ -181,133 +181,136 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="19"/>
         <CursorPos X="27" Y="19"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit15>
       <Unit16>
         <Filename Value="d:\lazarus\fpc\3.2.0\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="702"/>
         <CursorPos X="15" Y="720"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit16>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="308" Column="14" TopLine="285"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="287" TopLine="274"/>
       </Position1>
       <Position2>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="426" Column="12" TopLine="409"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="291" TopLine="274"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="114" TopLine="106"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="118"/>
       </Position3>
       <Position4>
-        <Filename Value="setup.pas"/>
-        <Caret Line="60" TopLine="38"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="283" TopLine="274"/>
       </Position4>
       <Position5>
-        <Filename Value="main.pas"/>
-        <Caret Line="114" TopLine="106"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="136" Column="16" TopLine="124"/>
       </Position5>
       <Position6>
-        <Filename Value="setup.pas"/>
-        <Caret Line="60" TopLine="39"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="283" TopLine="274"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="106" Column="51" TopLine="94"/>
+        <Caret Line="286" TopLine="274"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="29" TopLine="29"/>
+        <Caret Line="287" TopLine="274"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="114" Column="51" TopLine="90"/>
+        <Caret Line="289" TopLine="274"/>
       </Position9>
       <Position10>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="425" Column="14" TopLine="409"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="287" TopLine="274"/>
       </Position10>
       <Position11>
-        <Filename Value="setmain.pas"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="291" TopLine="274"/>
       </Position11>
       <Position12>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="58" Column="18" TopLine="36"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="293" TopLine="274"/>
       </Position12>
       <Position13>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="87" Column="30" TopLine="65"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="124"/>
       </Position13>
       <Position14>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="119" Column="57" TopLine="97"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="139" TopLine="124"/>
       </Position14>
       <Position15>
-        <Filename Value="setmain.pas"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="140" TopLine="124"/>
       </Position15>
       <Position16>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="87" Column="30" TopLine="65"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="124"/>
       </Position16>
       <Position17>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="119" Column="68" TopLine="97"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="283" TopLine="274"/>
       </Position17>
       <Position18>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="245" Column="31" TopLine="221"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="124"/>
       </Position18>
       <Position19>
-        <Filename Value="setmain.pas"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="283" TopLine="274"/>
       </Position19>
       <Position20>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="58" Column="18" TopLine="39"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="140" Column="18" TopLine="124"/>
       </Position20>
       <Position21>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="119" Column="50" TopLine="97"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="283" TopLine="274"/>
       </Position21>
       <Position22>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="247" Column="12" TopLine="223"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="124"/>
       </Position22>
       <Position23>
-        <Filename Value="setmain.pas"/>
-        <Caret Line="415" Column="23" TopLine="405"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="139" TopLine="124"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="114" TopLine="90"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="140" TopLine="124"/>
       </Position24>
       <Position25>
-        <Filename Value="setup.pas"/>
-        <Caret Line="60" TopLine="39"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="124"/>
       </Position25>
       <Position26>
         <Filename Value="udmbase.pas"/>
-        <Caret Line="88" Column="44" TopLine="85"/>
+        <Caret Line="140" Column="87" TopLine="124"/>
       </Position26>
       <Position27>
-        <Filename Value="main.pas"/>
-        <Caret Line="114" TopLine="90"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="137" TopLine="124"/>
       </Position27>
       <Position28>
-        <Filename Value="setup.pas"/>
-        <Caret Line="49" Column="50" TopLine="39"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="139" TopLine="124"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="114" TopLine="100"/>
+        <Filename Value="udmbase.pas"/>
+        <Caret Line="141" Column="28" TopLine="124"/>
       </Position29>
       <Position30>
-        <Filename Value="setup.pas"/>
-        <Caret Line="58" Column="44" TopLine="39"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="183" Column="29" TopLine="169"/>
       </Position30>
     </JumpHistory>
     <RunParams>

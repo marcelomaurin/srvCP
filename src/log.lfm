@@ -3,7 +3,7 @@ object frmLog: TfrmLog
   Height = 240
   Top = 303
   Width = 528
-  Caption = 'frmLog'
+  Caption = 'Log events'
   ClientHeight = 240
   ClientWidth = 528
   OnCreate = FormCreate

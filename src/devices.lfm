@@ -1,7 +1,7 @@
 object frmdevices: Tfrmdevices
-  Left = -523
+  Left = -521
   Height = 192
-  Top = -114
+  Top = -43
   Width = 256
   Caption = 'Devices'
   ClientHeight = 192
