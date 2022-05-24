@@ -5,7 +5,7 @@ unit vp240W;
 interface
 
 uses
-  Classes, SysUtils, windows, dialogs, funcoes;
+  Classes, SysUtils, windows, dialogs, funcoes, log;
 
 const
   //ALERTAS
@@ -13,11 +13,6 @@ const
   START_SRV   = 'Servidor inicializado com sucesso.';
   STOP_SRV    = 'Servidor interrompido.';
   maxequipamentos = 500;
-
-
-type
-  TResponseFunction = procedure(posicao: integer; BarCode : String);
-
 
 type TIPV4 = record
   d,c,b,a: byte;
@@ -57,14 +52,12 @@ TVP240W = class(TObject)
 
 private
   TabTerms: TTABSOCK;
-  FResponseFunction: TResponseFunction;
   FError : boolean;
   fMenssage : String;
   FvetEquipamentos: array[0..maxequipamentos] of TConPreco;
   FlstEquipamentos: TStringlist;
   function getListEquipamentos: integer;
   function FGetCountItens: integer;
-  procedure setResponseFunction(AValue: TResponseFunction);
 public
 
   constructor Create(pathlib: string);
@@ -72,7 +65,7 @@ public
   procedure LoadLib(pathlib: string);
   function AtualizaEquipamentos() : integer;
   function FindIP(ID_IP : DWord; var posicao: integer):String;
-  function getASK(): integer;
+  function getASK(var strBarcode: String): integer;
   procedure SendMsg(IP : string; port : integer; Linha1, Linha2: string; Time : integer);
   procedure SendAllMsg( Linha1, Linha2 : string; Time : integer);
   procedure SendPrice(ID_Ip: dword; NameProd: String; PriceProd : String);
@@ -87,7 +80,6 @@ public
   function GetPosicao(IP: String): Integer;
   PROPERTY VERSAO : DWORD read FVersion;
   property lstEquipamentos : integer read getListEquipamentos;
-  property ResponseFunction : TResponseFunction read FResponseFunction write setResponseFunction;
   property GetCountItens : integer read fGetCountItens;
 
 
@@ -140,7 +132,7 @@ implementation
 
 constructor TVP240W.Create(pathlib: string);
 begin
-  FResponseFunction := nil;
+  //FResponseFunction := nil;
   LoadLib(pathlib);
   if @vInitialize <> nil then
      vInitialize;
@@ -213,10 +205,7 @@ begin
       begin
         sIP := Inet_NtoA(TabTerms.TabIP[posicao]);
         IP := AnsiString(sIP);
-        //ShowMessage(IP);
         FvetEquipamentos[posicao].ID_Ip := TabTerms.TabIP[posicao];
-        //FvetEquipamentos[posicao].Ip := CaptINET(TabTerms.TabIP[posicao]);
-
         FvetEquipamentos[posicao].Ip := IP;
         FvetEquipamentos[posicao].Socket:= TabTerms.NumSockConec;
         FvetEquipamentos[posicao].Nbr:=0;
@@ -249,10 +238,8 @@ begin
   result := resultado;
 end;
 
-function TVP240W.getASK(): integer;
+function TVP240W.getASK(var strBarcode: String): integer;
 var
- //ID_Socket:  Word;
- //stBarCode: stAddress;
  ip : string;
  posicao : integer;
  BarCode: PAnsiChar;
@@ -266,8 +253,10 @@ begin
   BEGIN
     (*Capturou o barcode*)
     BarCode := bReceiveBarcode(ID_Ip, ID_Socket,Nbr);
+    //frmLog.Log('TVP240W.getASK() - chamou');
     if(BarCode<>'')  then
     begin
+      frmLog.Log('TVP240W.getASK() - Recebeu o seguinte Codigo de Barras:'+string(BarCode));
       ip := FindIP(ID_Ip, posicao);
       (*Acha o Indice*)
       if(posicao <> -1) then
@@ -275,16 +264,14 @@ begin
          (*Captura dados solicitados*)
          FvetEquipamentos[posicao].lastbarcode:= AnsiString(Barcode);
          FvetEquipamentos[posicao].Nbr:=Nbr;
-         if(@FResponseFunction<> nil) then  (*Chama Callback*)
-         begin
-              FResponseFunction(posicao,AnsiString(Barcode) );
-         end;
+
+         strBarcode := AnsiString(Barcode);
       end;
-      resultado := 1;
+      resultado := posicao;
     end
     else
     begin
-       resultado := 0;
+       resultado := -1;
     end;
     result := resultado;
 
@@ -435,15 +422,6 @@ begin
      result := FlstEquipamentos.Count;
 end;
 
-
-
-
-
-procedure TVP240W.setResponseFunction(AValue: TResponseFunction);
-begin
-  if FResponseFunction=AValue then Exit;
-     FResponseFunction:=AValue;
-end;
 
 //------------------------------------------------------------------------------
 

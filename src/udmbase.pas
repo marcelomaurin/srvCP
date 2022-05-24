@@ -5,7 +5,7 @@ unit udmbase;
 interface
 
 uses
-  Classes, SysUtils, DB, ZConnection, ZDataset, setmain, Dialogs, log;
+  Classes, SysUtils, DB, ZConnection, ZDataset, setmain, Dialogs, log, funcoes;
 
 type
 
@@ -62,22 +62,16 @@ function TdmBase.BuscaProduto(Barcode: string): boolean;
 var
   resultado : boolean;
 begin
-    resultado := tbProdutos.locate('prodbarcode',Barcode,[loCaseInsensitive] );
-    frmlog.log('TdmBase.BuscaProduto - Barcode:'+barcode+' - Resultado:'+ booltostr(resultado));
+    //resultado := tbProdutos.locate('prodbarcode',Barcode,[loCaseInsensitive] );
+    tbProdutos.first;
+    resultado := tbProdutos.locate('prodbarcode',Barcode,[] );
+    frmlog.log('TdmBase.BuscaProduto - Barcode:'+barcode+' - Resultado:'+ iif(resultado,'Achou','Nao achou'));
     result := resultado;
 
 end;
 
 procedure TdmBase.Conectar();
 begin
-    {$ifdef CPU32}
-    //zcon.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite32\sqlite3.dll';
-    //zconImport.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite32\sqlite3.dll';
-    {$endif}
-    {$ifdef CPU64}
-    //zcon.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite64\sqlite3.dll';
-    //zconImport.LibraryLocation:= ExtractFilePath(ApplicationName)+'\sqlite64\sqlite3.dll';
-    {$endif}
     if FileExists(FSETMAIN.BancoDLL) then
     begin
       zcon.LibraryLocation:= FSETMAIN.BancoDLL;
@@ -91,14 +85,13 @@ begin
 
     if FileExists(FSETMAIN.Database) then
     begin
-      //zcon.Database:='.\..\db\srvCP.db';
       zcon.Database:= FSETMAIN.Database;
       zcon.Connect;
     end
     else
     begin
       ShowMessage('Database '+FSETMAIN.database + ' not exit ');
-      //exit();
+
     end;
 end;
 

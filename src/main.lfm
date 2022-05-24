@@ -228,7 +228,7 @@ object frmmain: Tfrmmain
   end
   object tmLeituras: TTimer
     Enabled = False
-    Interval = 2000
+    Interval = 100
     OnTimer = tmLeiturasTimer
     Left = 79
     Top = 9

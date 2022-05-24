@@ -10,7 +10,7 @@ uses
   split, log;
 
 Const
-  Version : double = 0.5;
+  Version : double = 0.6;
 
 type
 
@@ -74,7 +74,7 @@ type
 var
   frmmain: Tfrmmain;
 
-procedure LerBC(posicao : integer; BarCode : String);
+//procedure LerBC(posicao : integer; BarCode : String);
 
 implementation
 
@@ -90,8 +90,7 @@ begin
        if F32bits then
        begin
           FCPGENERICO := TCPGENERICO.create(TypeCP_VP240W, FSETMAIN.PATHVP240W);
-          FCPGENERICO.GenericResponseFunction:= @LerBC; (*CallBack*)
-          //FCPGENERICO.SendAllMsg(FSETMAIN.Label1,FSETMAIN.Label2,2);
+          FCPGENERICO.SendAllMsg(FSETMAIN.Label1,FSETMAIN.Label2,2);
           TrayIcon1.Visible:=true;
           lbVersao.Caption:= 'LIB:'+ FCPGENERICO.VERSAO;
           AtivasrvCP();
@@ -218,17 +217,31 @@ begin
 end;
 
 procedure Tfrmmain.tmLeiturasTimer(Sender: TObject);
+var
+  posicao : integer;
+  strBarcode : string;
+  ip : ansistring;
 begin
-  //Application.ProcessMessages;
+  tmLeituras.Enabled:=false;
   if (FSETMAIN.ModeloCP = integer(CVP240W)) then
   begin
     if(FCPGENERICO <> nil) then
     begin
-       FCPGENERICO.getASK();
+       posicao := FCPGENERICO.getASK(strBarcode);
+       if (posicao <> -1) then
+       begin
+         ip := FCPGENERICO.GetIpEquipamento(posicao);
+         frmlog.Log('tmLeiturasTimer - posicao:'+inttostr(posicao)+ ' - Barcode:'+strBarcode);
+         LerBarcode(ip, strBarcode);
+
+       end;
     end;
-
   end;
-
+  if (posicao <> -1) then
+  begin
+    Application.ProcessMessages;
+  end;
+  tmLeituras.Enabled:=true;
 end;
 
 procedure Tfrmmain.tmMonitorTimer(Sender: TObject);
@@ -306,7 +319,6 @@ var
   equipamento: integer;
   ID_Ip: DWORD;
 begin
-  //ShowMessage(ip);
   frmlog.Log('LerBarcode - IP:'+IP+ ' - Barcode:'+Barcode);
   if(FCPGENERICO <> nil) then
   begin
@@ -324,34 +336,26 @@ begin
            Fproduto := dmBase.tbProdutos.FieldByName('ProdNome').value;
            FPreco := dmBase.tbProdutos.FieldByName('PRODPRECO').value;
 
-           frmlog.Log('LerBarcode - equipamento:'+Fproduto+ ' - Preco:'+FPreco);
+           frmlog.Log('LerBarcode - produto:'+Fproduto+ ' - Preco:'+FPreco);
 
            id_ip := FCPGENERICO.GetIDEquipamento(ip);
 
-           frmlog.Log('LerBarcode - Produto:'+inttostr(equipamento));
+           frmlog.Log('LerBarcode - ID Equipamento:'+inttostr(equipamento));
            FCPGENERICO.SendPrice(ip, Fproduto , FPreco);
+           frmLog.log('Tfrmmain.LerBarcode - Barra:'+BarCode+' - Produto encontrado');
        end
        else
        begin
            FCPGENERICO.SendNotPrice(ip, 'Produto não encontrado');
+           frmLog.log('Tfrmmain.LerBarcode - Barra:'+BarCode+' - Produto não encontrado');
        end;
-
-
-
       end;
     end;
+  end
+  else
+  begin
+      frmLog.log('Tfrmmain.LerBarcode - FCPGENERICO - Perdeu ponteiro');
   end;
-end;
-
-
-procedure LerBC(posicao: integer; BarCode: String);
-var
-  ip : ansistring;
-begin
-  ip := FCPGENERICO.GetIpEquipamento(posicao);
-  frmlog.Log('LerBC - posicao:'+inttostr(posicao)+ ' - Barcode:'+Barcode);
-  frmmain.LerBarcode(ip, BarCode);
-
 end;
 
 
