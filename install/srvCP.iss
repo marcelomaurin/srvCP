@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "srvCP"
-#define MyAppVersion "0.5"
+#define MyAppVersion "0.6"
 #define MyAppPublisher "maurinsoft"
 #define MyAppURL "http://maurinsoft.com.br"
 #define MyAppExeName "srvCP.exe"
@@ -21,7 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputBaseFilename=Install_srvSC_05
+OutputBaseFilename=Install_srvSC_06
 Compression=lzma
 SolidCompression=yes
 
